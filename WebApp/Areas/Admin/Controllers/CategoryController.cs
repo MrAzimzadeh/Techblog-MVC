@@ -35,21 +35,50 @@ namespace WebApp.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Create(Category category)
         {
-        
-            var findCategory = _context.Categories.FirstOrDefault(x=>x.CategoryName == category.CategoryName); //  Eyni adda bir categorynin olub olmamasini yoxlayir 
+
+            var findCategory = _context.Categories.FirstOrDefault(x => x.CategoryName == category.CategoryName); //  Eyni adda bir categorynin olub olmamasini yoxlayir 
             // biz burada sert veririk eger ki category ile eyi adda var sa 
             // viev bag le mesaj gonderirik ki bes bu adda senin bu adda bir categorin var 
             if (findCategory != null)
             {
-                ViewBag.CategoryExist  = "this Category is exist ";
+                ViewBag.CategoryExist = "this Category is exist ";
                 return View();
             }
             _context.Categories.Add(category);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
-        
+        }
+        public IActionResult Edit(int id)
+        {
+            var category = _context.Categories.FirstOrDefault(x => x.Id == id);
+            return View(category);
+        }
+        [HttpPost]
+        public IActionResult Edit(Category category)
+        {
+            var findCategory = _context.Categories.FirstOrDefault(x => x.CategoryName == category.CategoryName);
+            if (findCategory != null)
+            {
+                ViewBag.CategoryExist = "Bu categorya zaten var Agzina geleni yazma!!!!";
+                return View(findCategory);
+            }
+            _context.Categories.Update(category);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Delete(int Id)
+        {
+            var delete = _context.Categories.FirstOrDefault(x => x.Id == Id);
+            return View(delete);
+        }
+        [HttpPost]
+        public IActionResult Delete(Category category)
+        {
+            _context.Categories.Remove(category);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -18,7 +18,6 @@
                             <th>
                                 Parametr
                             </th>
-
                         </tr>
                     </thead>
                     <tfoot>
@@ -26,11 +25,9 @@
                             <th>#Id</th>
                             <th>Title</th>
                             <th>Status</th>
-
                             <th>
                                 Parametr
                             </th>
-
                         </tr>
                     </tfoot>
                     <tbody>
@@ -38,7 +35,6 @@
                         @foreach (var category in Model)
                         {
                             <tr>
-
                                 <th>@category.Id</th>
                                 <th>
                                     @category.CategoryName
@@ -46,12 +42,11 @@
                                 <th>
                                     @* @(article. ? "Active" : "De Aktive"); *@
                                 </th>
-                                <th>
-                                    <a href="/admin/Category/Detail/@category.Id" class="btn btn-danger"> Deteil </a>
-                                    <a href="/admin/Category/delete/@category.Id" class="btn btn-secondary"> Delete </a>
-                                    <a href="/admin/Category/update/@category.Id" class="btn btn-info">Update</a>
+                                <th class="d-flex">
+                                    @* <a href="/admin/Category/Detail/@category.Id" class="btn btn-secondary"> Deteil </a> *@
+                                    <a href="/admin/Category/delete/@category.Id" class="btn btn-danger w-50"> Delete </a>
+                                    <a href="/admin/Category/Edit/@category.Id" class="btn btn-primary w-50">Update</a>
                                 </th>
-
                             </tr>
                         }
                     </tbody>
@@ -59,5 +54,4 @@
             </div>
         </div>
     </div>
-
 </div>
