@@ -7473,6 +7473,10 @@
       "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.woff2"
     },
     {
+      "Id": "C:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\wwwroot\\images\\Screenshot_20230216_044949.png",
+      "PackagePath": "staticwebassets\\images\\Screenshot_20230216_044949.png"
+    },
+    {
       "Id": "C:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\wwwroot\\images\\ads-bg.png",
       "PackagePath": "staticwebassets\\images\\ads-bg.png"
     },
