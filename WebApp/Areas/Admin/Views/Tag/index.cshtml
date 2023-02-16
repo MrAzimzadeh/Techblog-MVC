@@ -1,10 +1,10 @@
-@model List<Category>
+@model List<Tag>
 <div class="container-fluid">
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">
-                <a href="/admin/Category/create">Create</a>
+                <a href="/admin/Tag/create">Create</a>
             </h6>
         </div>
         <div class="card-body">
@@ -32,22 +32,22 @@
                     </tfoot>
                     <tbody>
                         @* *@
-                        @foreach (var category in Model)
+                        @foreach (var tag in Model)
                         {
                             <tr>
-                                <th>@category.Id</th>
+                                <th>@tag.Id</th>
                                 <th>
-                                    @category.CategoryName
+                                    @tag.TagName
                                 </th>
                                 <th>
                                     @* @(article. ? "Active" : "De Aktive"); *@
                                 </th>
                                 <th class="d-flex">
-                                    @* <a href="/admin/Category/Detail/@category.Id" class="btn btn-secondary"> Deteil
+                                    @* <a href="/admin/tag/Detail/@tag.Id" class="btn btn-secondary"> Deteil
                                 </a> *@
-                                    <a href="/admin/Category/delete/@category.Id" class="btn btn-danger w-50"> Delete
+                                    <a href="/admin/tag/delete/@tag.Id" class="btn btn-danger w-50"> Delete
                                     </a>
-                                    <a href="/admin/Category/Edit/@category.Id" class="btn btn-primary w-50">Update</a>
+                                    <a href="/admin/tag/Edit/@tag.Id" class="btn btn-primary w-50">Update</a>
                                 </th>
                             </tr>
                         }

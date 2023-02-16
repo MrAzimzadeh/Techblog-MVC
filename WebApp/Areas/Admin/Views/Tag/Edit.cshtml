@@ -1,22 +1,21 @@
-@model Category
-
-@if (@ViewBag.CategoryExist != null)
+@model Tag
+@if (@ViewBag.Tagexist != null)
 {
     <div class="col-lg-6 m-auto mb-5">
         <div class="alert alert-danger shadow" role="alert">
-            @ViewBag.CategoryExist
+            @ViewBag.Tagexist
         </div>
     </div>
-} 
+}
 <div class="col-lg-6 m-auto">
     <div class="card shadow p-3 mb-4">
         <form method="post">
             <div class="form-group">
                 <label for="category">Category name</label>
-                <input id="category" class="form-control" type="text" name="CategoryName" />
+                <input id="category" class="form-control" type="text" value="@Model.TagName" name="TagName" />
             </div>
             <div class="form-group">
-                <input class="btn btn-outline-success btn-sm" type="submit" value="Submit" />
+                <input class="btn btn-outline-warning btn-sm" type="submit" value="Update" />
             </div>
         </form>
     </div>
