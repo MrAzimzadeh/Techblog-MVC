@@ -1,0 +1,73 @@
+
+
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <a href="/admin/New/create">Create</a>
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#Id</th>
+                            <th>Photo</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Publish Date </th>
+                            <th>
+                                Parametr
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#Id</th>
+                            <th>Photo</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Publish Date </th>
+
+                            <th>
+                                Parametr
+                            </th>
+
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @* *@
+                        @* @foreach (var news in Model)
+                        {
+                            <tr>
+
+                                <th>@news.Id</th>
+                                <th>
+                                    <img src="@news.PhotoUrl" alt="" width="100" srcset="">
+                                </th>
+                                <th>
+                                    @news.Title
+                                </th>
+
+                                <th>@Html.Raw(news.Content.Substring(0,10))...</th>
+                                <th>
+                                    @news.PublishDate.ToString("dd MM yyyy")
+                                </th>
+                                <th>
+                                    <a href="/admin/New/Detail/@news.Id" class="btn btn-danger"> Deteil </a>
+                                    <a href="/admin/new/delete/@news.Id" class="btn btn-secondary"> Delete </a>
+                                    <a href="/admin/new/update/@news.Id" class="btn btn-info">Update</a>
+                                </th>
+
+                            </tr>
+                        } *@
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
