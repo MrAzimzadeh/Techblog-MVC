@@ -27,7 +27,7 @@ Shared "Tech Blog" website as "Free css". This site consisted of Front-end only.
   
 ## Project ScreenShoot
 
-![ScreenShoot1](https://github.com/MrAzimzadeh/Global-Asp.Net-MVC/blob/master/WebApp/wwwroot/Uploads/Screenshot_20230215_090338.png?raw=true)
-![ScreenShoot](https://github.com/MrAzimzadeh/Global-Asp.Net-MVC/blob/master/WebApp/wwwroot/Uploads/Screenshot_20230215_090228.png?raw=true)
+![ScreenShoot1](https://github.com/MrAzimzadeh/Techblog-MVC/blob/main/WebApp/wwwroot/images/Screenshot_20230216_044949.png?raw=true)
+<!-- ![ScreenShoot](https://github.com/MrAzimzadeh/Global-Asp.Net-MVC/blob/master/WebApp/wwwroot/Uploads/Screenshot_20230215_090228.png?raw=true) -->
 
   
