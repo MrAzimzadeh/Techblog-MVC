@@ -21,14 +21,16 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
 app.UseAuthentication(); // qeydiyyat 
 app.UseAuthorization();
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
-      name: "areas",
-      pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
-    );
+    name: "areas",
+    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
+);
 });
 
 app.MapControllerRoute(
