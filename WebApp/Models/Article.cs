@@ -14,6 +14,7 @@ namespace WebApp.Models
         public int ViewCount { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
+        public DateTime DelateDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsDelete { get; set; }
         public string SeoUrl { get; set; }
@@ -22,9 +23,8 @@ namespace WebApp.Models
 
         public List<ArticleTag> ArticleTags { get; set; }
 
-        public int UserId { get; set; }
+        public string? UserId { get; set; }
         public User User { get; set; }
-
         public List<Comment> Comments { get; set; }
     }
 }

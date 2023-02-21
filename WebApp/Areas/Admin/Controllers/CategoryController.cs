@@ -35,6 +35,10 @@ namespace WebApp.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Create(Category category)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(category);
+            }
 
             var findCategory = _context.Categories.FirstOrDefault(x => x.CategoryName == category.CategoryName); //  Eyni adda bir categorynin olub olmamasini yoxlayir 
             // biz burada sert veririk eger ki category ile eyi adda var sa 
