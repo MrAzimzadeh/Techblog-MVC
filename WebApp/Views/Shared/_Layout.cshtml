@@ -44,7 +44,9 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -497,13 +499,31 @@
                         </ul>
                         <ul class="navbar-nav mr-2">
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-rss"></i></a>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <form method="post" asp-controller="Auth" asp-action="Logout">
+                                        <button class="btn btn-block" type="submit">
+                                            <i class="fa-solid fa-right-from-bracket"></i>
+                                        </button>
+                                    </form>
+                                }
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-android"></i></a>
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    <a class="nav-link" href="/auth/Login"><i class="fa-solid fa-user-plus"></i></a>
+                                }
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><i class="fa fa-apple"></i></a>
+                            </li>
+                            <li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <p class="text-white text-center">
+                                        @User.Identity.Name
+                                    </p>
+                                }
                             </li>
                         </ul>
                     </div>

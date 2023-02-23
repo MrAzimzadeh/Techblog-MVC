@@ -16,12 +16,29 @@ builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(connec
 builder.Services.AddDefaultIdentity<User>().AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
 
+builder.Services.AddAuthentication().AddCookie(
+    options =>
+    {
+        options.LoginPath = "/Login";
+        options.LogoutPath = "/logout";
+    }
+);
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Auth/Login/";
 });
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Default Password settings.
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 6;
+    // options.Password.RequiredUniqueChars = 1;
+});
 
 var app = builder.Build();
 

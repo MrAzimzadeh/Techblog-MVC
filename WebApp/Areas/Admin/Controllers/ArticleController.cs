@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApp.Data;
 
 namespace WebApp.Areas.Admin.Controllers
 {
-    [Area(nameof(Admin))]   
+    [Area(nameof(Admin))]  
+    [Authorize] 
     public class ArticleController : Controller
     { 
         private readonly AppDbContext _context;
