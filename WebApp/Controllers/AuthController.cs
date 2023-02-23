@@ -60,7 +60,6 @@ namespace WebApp.Controllers
 
             };
             var result = await _userManager.CreateAsync(newUser, registerDTO.Password);
-
             if (result.Succeeded)
             {
                 return RedirectToAction(nameof(Login));
