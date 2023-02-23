@@ -26,13 +26,13 @@ namespace WebApp.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            return View(); 
         }
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(loginDTO);
             }

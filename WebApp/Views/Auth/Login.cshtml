@@ -33,11 +33,12 @@
                                     <input type="email" asp-for="Email" class="form-control form-control-user"
                                         id="exampleInputEmail" aria-describedby="emailHelp"
                                         placeholder="Enter Email Address...">
-                                        <span></span>
+                                    <span asp-validation-for="Email"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="password" asp-for="Password" class="form-control form-control-user"
                                         id="exampleInputPassword" placeholder="Password">
+                                        <span asp-validation-for="Password"></span>
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
