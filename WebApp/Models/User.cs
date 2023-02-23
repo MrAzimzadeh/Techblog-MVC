@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApp.Models
 {
@@ -10,12 +7,11 @@ namespace WebApp.Models
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-
         public string PhotoUrl { get; set; }
         public string AboutAuthor { get; set; }
-
         public List<Article> Articles { get; set; }
-        public List<Comment> comments { get; set; }
+        public Comment Comment { get; set; }
 
+        //public List<UserAds> UserAds { get; set; }
     }
 }
