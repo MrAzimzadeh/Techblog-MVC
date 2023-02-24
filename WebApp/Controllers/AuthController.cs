@@ -26,7 +26,7 @@ namespace WebApp.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View(); 
+            return View();
         }
 
         [HttpPost]
@@ -39,10 +39,21 @@ namespace WebApp.Controllers
             var checkEmail = await _userManager.FindByEmailAsync(loginDTO.Email);
             if (checkEmail == null)
             {
-                ViewBag.Error = "This Email Is not exist! ";
+                ViewBag.Error = "This Email Is not exist! "; // 
                 return View();
             }
-            Microsoft.AspNetCore.Identity.SignInResult result = await _signInManger.PasswordSignInAsync(checkEmail, loginDTO.Password, loginDTO.RememberMe, false);
+            Microsoft
+                .AspNetCore
+                .Identity
+                .SignInResult
+                    result =
+                    await _signInManger
+                        .PasswordSignInAsync(
+                            checkEmail,
+                            loginDTO.Password,
+                            loginDTO.RememberMe,
+                            true
+                            );
 
             if (result.Succeeded)
             {

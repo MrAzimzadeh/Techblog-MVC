@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApp.Data;
@@ -11,6 +12,7 @@ using WebApp.Models;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
+    [Authorize] 
     public class CategoryController : Controller
     {
         private readonly AppDbContext _context;

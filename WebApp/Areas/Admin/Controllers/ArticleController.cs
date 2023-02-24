@@ -5,15 +5,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebApp.Data;
 
 namespace WebApp.Areas.Admin.Controllers
 {
-    [Area(nameof(Admin))]  
-    [Authorize] 
+    [Area(nameof(Admin))]
+    [Authorize]
     public class ArticleController : Controller
-    { 
+    {
         private readonly AppDbContext _context;
 
         public ArticleController(AppDbContext context)
@@ -23,7 +24,12 @@ namespace WebApp.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            var article = _context.Articles.ToList();
+            var article = _context.Articles
+            .Include(x => x.category)
+            .Include(x => x.User)
+            .Include(x => x.ArticleTags)
+            .ThenInclude(x => x.Tag)
+            .ToList();
             return View(article);
         }
 
