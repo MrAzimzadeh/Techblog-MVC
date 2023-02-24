@@ -33,12 +33,12 @@
                                     <input type="email" asp-for="Email" class="form-control form-control-user"
                                         id="exampleInputEmail" aria-describedby="emailHelp"
                                         placeholder="Enter Email Address...">
-                                    <span asp-validation-for="Email"></span>
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="password" asp-for="Password" class="form-control form-control-user"
                                         id="exampleInputPassword" placeholder="Password">
-                                    <span asp-validation-for="Password"></span>
+                                    <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
@@ -58,6 +58,9 @@
                                 </a>
                                 <a href="index.html" class="btn btn-facebook btn-user btn-block">
                                     <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                </a>
+                                <a href="/" class="btn btn-danger btn-user btn-block">
+                                    <i class="fa fa-arrow-circle-left "></i> Gencel 
                                 </a>
                             </form>
                             <hr>

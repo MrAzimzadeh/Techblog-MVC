@@ -16,13 +16,13 @@ builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(connec
 builder.Services.AddDefaultIdentity<User>().AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
 
-builder.Services.AddAuthentication().AddCookie(
-    options =>
-    {
-        options.LoginPath = "/Login";
-        options.LogoutPath = "/logout";
-    }
-);
+// builder.Services.AddAuthentication().AddCookie(
+//     options =>
+//     {
+//         options.LoginPath = "/Login";
+//         options.LogoutPath = "/logout";
+//     }
+// );
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -32,12 +32,12 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Default Password settings.
-    options.Password.RequireDigit = true;
-    options.Password.RequireLowercase = true;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = false;
-    options.Password.RequiredLength = 6;
-    // options.Password.RequiredUniqueChars = 1;
+    options.Password.RequireDigit = true; //! reqem true
+    options.Password.RequireLowercase = true; //! herf true 
+    options.Password.RequireNonAlphanumeric = false; //? simvol folse
+    options.Password.RequireUppercase = false; //* boyuk herf   
+    options.Password.RequiredLength = 6; //? length  sayi 
+    // options.Password.RequiredUniqueChars = 1; //todo  bir dene uniq karakter olmalidir 
 });
 
 var app = builder.Build();

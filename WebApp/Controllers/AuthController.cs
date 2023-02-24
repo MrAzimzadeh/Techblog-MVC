@@ -10,16 +10,12 @@ namespace WebApp.Controllers
     public class AuthController : Controller
     {
         private readonly UserManager<User> _userManager;
-
         private readonly SignInManager<User> _signInManger;
-
         public AuthController(UserManager<User> userManager, SignInManager<User> signInManger)
         {
             _userManager = userManager;
             _signInManger = signInManger;
         }
-
-
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -28,11 +24,10 @@ namespace WebApp.Controllers
             }
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) //todo Bosluqu Yoxlayiriq
             {
                 return View(loginDTO);
             }
@@ -51,18 +46,17 @@ namespace WebApp.Controllers
                         .PasswordSignInAsync(
                             checkEmail,
                             loginDTO.Password,
-                            loginDTO.RememberMe,
-                            true
+                            isPersistent: loginDTO.RememberMe,
+                            lockoutOnFailure: true
                             );
 
-            if (result.Succeeded)
+            if (!result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                ModelState.AddModelError("Error", "Email or Password is invalid!!!");
+                return View();
             }
-
-            return View();
+            return RedirectToAction("Index", "Home");
         }
-
         public IActionResult Register()
         {
             if (User.Identity.IsAuthenticated)
@@ -71,24 +65,18 @@ namespace WebApp.Controllers
             }
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
-
-
             if (!ModelState.IsValid)
             {
                 return View(registerDTO);
             }
-
             var checkEmail = await _userManager.FindByEmailAsync(registerDTO.Email);
-
             if (checkEmail != null)
             {
                 return View();
             }
-
             User newUser = new()
             {
                 UserName = registerDTO.Name,
@@ -100,11 +88,20 @@ namespace WebApp.Controllers
 
             };
             var result = await _userManager.CreateAsync(newUser, registerDTO.Password);
+            //todo =========== burada biz result eyer ugurludursa bizi Login etmis sekilde Home`a qaytaracaq @MrAzimzadeh
             if (result.Succeeded)
             {
-                return RedirectToAction(nameof(Login));
+                await _signInManger.SignInAsync(newUser, isPersistent: false);
+                return RedirectToAction("Index", "Home");
             }
-            return View();
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return View(registerDTO);
+            }
         }
         [HttpPost]
         [Authorize]
