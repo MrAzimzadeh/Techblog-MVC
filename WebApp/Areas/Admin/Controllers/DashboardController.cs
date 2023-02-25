@@ -11,7 +11,7 @@ namespace WebApp.Areas.Admin.Controllers
 {
 
     [Area(nameof(Admin))]
-    // [Authorize(Roles = "Admin ,Editor Admin,Editor , Moder ")]
+    [Authorize(Roles = "Admin,Admin Editor,Editor,Moderator")]
     public class DashboardController : Controller
     {
         private readonly ILogger<DashboardController> _logger;
@@ -20,7 +20,6 @@ namespace WebApp.Areas.Admin.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
             return View();

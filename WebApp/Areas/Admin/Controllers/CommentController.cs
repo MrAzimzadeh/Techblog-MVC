@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    // [Authorize] 
+    [Authorize] 
 
     public class CommentController : Controller
     {

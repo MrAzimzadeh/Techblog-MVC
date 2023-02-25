@@ -13,7 +13,7 @@ using WebApp.Models;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    // [Authorize(Roles ="Admin")]
+    [Authorize(Roles ="Admin")]
     public class UserController : Controller
     {
         private readonly UserManager<User> _userManager;

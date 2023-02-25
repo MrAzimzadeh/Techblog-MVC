@@ -12,7 +12,7 @@ using WebApp.Models;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    // [Authorize(Roles ="Admin , Admin Editor , Moderator")] 
+    [Authorize(Roles ="Admin , Admin Editor , Moderator")] 
 
     public class TagController : Controller
     {
