@@ -440,7 +440,7 @@ namespace WebApp.Migrations
 
             modelBuilder.Entity("WebApp.Models.Article", b =>
                 {
-                    b.HasOne("WebApp.Models.Category", "category")
+                    b.HasOne("WebApp.Models.Category", "Category")
                         .WithMany("Articles")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -450,9 +450,9 @@ namespace WebApp.Migrations
                         .WithMany("Articles")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("User");
+                    b.Navigation("Category");
 
-                    b.Navigation("category");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WebApp.Models.ArticleTag", b =>

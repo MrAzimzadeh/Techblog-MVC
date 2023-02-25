@@ -12,7 +12,7 @@ using WebApp.Models;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    [Authorize(Roles ="Admin, Admin Editor")] 
+    // [Authorize(Roles ="Admin, Admin Editor")] 
     public class CategoryController : Controller
     {
         private readonly AppDbContext _context;
@@ -41,7 +41,6 @@ namespace WebApp.Areas.Admin.Controllers
             {
                 return View(category);
             }
-
             var findCategory = _context.Categories.FirstOrDefault(x => x.CategoryName == category.CategoryName); //  Eyni adda bir categorynin olub olmamasini yoxlayir 
             // biz burada sert veririk eger ki category ile eyi adda var sa 
             // viev bag le mesaj gonderirik ki bes bu adda senin bu adda bir categorin var 
