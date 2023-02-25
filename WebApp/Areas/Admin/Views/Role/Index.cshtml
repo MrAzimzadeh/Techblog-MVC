@@ -1,4 +1,5 @@
 @model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
 <div class="container-fluid">
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -59,7 +60,18 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Delete the <b class="text-info"> @item.Name?</b>
+                                                    @if (ViewBag.ErrorMessage != null)
+                                                    {
+                                                        <div class="col-lg-6 m-auto mb-5">
+                                                            <div class="alert alert-danger shadow" role="alert">
+                                                                @ViewBag.ErrorMessage
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>Delete the <b class="text-info"> @item.Name?</b> </span>
+                                                    }
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
