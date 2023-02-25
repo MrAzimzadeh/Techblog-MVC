@@ -47,22 +47,31 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/admin/Article/index">
-                    <i class="fa-regular fa-newspaper"></i>
-                    <span>Articles</span></a>
-            </li>
+            @if (!User.IsInRole("Moderator"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/Article/index">
+                        <i class="fa-regular fa-newspaper"></i>
+                        <span>Articles</span></a>
+                </li>
+            }
 
-            <li class="nav-item">
-                <a class="nav-link" href="/admin/Category/index">
-                    <i class="fa-solid fa-layer-group"></i>
-                    <span>Category</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/admin/Tag/index">
-                    <i class="fa-solid fa-tags"></i>
-                    <span>Tag</span></a>
-            </li>
+            @if (User.IsInRole("Admin") || User.IsInRole("Admin Editor"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/Category/index">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>Category</span></a>
+                </li>
+            }
+            @if (User.IsInRole("Admin") || User.IsInRole("Admin Editor"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/Tag/index">
+                        <i class="fa-solid fa-tags"></i>
+                        <span>Tag</span></a>
+                </li>
+            }
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -72,6 +81,8 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
+            @if (User.IsInRole("Admin"))
+            {
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -86,6 +97,7 @@
                     </div>
                 </div>
             </li>
+            }
             @* <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"

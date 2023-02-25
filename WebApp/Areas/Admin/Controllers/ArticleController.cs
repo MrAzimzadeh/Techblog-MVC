@@ -12,7 +12,7 @@ using WebApp.Data;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    [Authorize]
+    [Authorize(Roles ="Admin , Admin Editor , Editor")]
     public class ArticleController : Controller
     {
         private readonly AppDbContext _context;
