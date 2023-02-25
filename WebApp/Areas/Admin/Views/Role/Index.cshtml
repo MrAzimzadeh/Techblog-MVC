@@ -1,0 +1,51 @@
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <a href="/admin/Role/create">Create</a>
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#Id</th>
+                            <th>Roles</th>
+                            <th>
+                                Parametr
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#Id</th>
+                            <th>Roles</th>
+                            <th>
+                                Parametr
+                            </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @* if *@
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                            <th>@Html.Raw(item.Id.Substring(1,5))</th>
+                            <th>@item.Name</th>
+                            <th>
+                                <a href="#" class="btn btn-danger">Delete</a>
+                                <a href="#" class="btn btn-info">Update</a>
+                            </th>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

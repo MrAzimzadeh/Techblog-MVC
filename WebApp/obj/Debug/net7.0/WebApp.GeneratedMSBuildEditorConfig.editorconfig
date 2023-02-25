@@ -40,6 +40,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXGluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/mehem/OneDrive/Desktop/ComparAcademy/NewGroup/ASP.NET/TechBlog/WebApp/Areas/Admin/Views/Role/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUm9sZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mehem/OneDrive/Desktop/ComparAcademy/NewGroup/ASP.NET/TechBlog/WebApp/Areas/Admin/Views/Role/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUm9sZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/mehem/OneDrive/Desktop/ComparAcademy/NewGroup/ASP.NET/TechBlog/WebApp/Areas/Admin/Views/Shared/Components/Auth/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXENvbXBvbmVudHNcQXV0aFxEZWZhdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -62,6 +70,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/mehem/OneDrive/Desktop/ComparAcademy/NewGroup/ASP.NET/TechBlog/WebApp/Areas/Admin/Views/Tag/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGFnXGluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mehem/OneDrive/Desktop/ComparAcademy/NewGroup/ASP.NET/TechBlog/WebApp/Areas/Admin/Views/User/AddRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxBZGRSb2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mehem/OneDrive/Desktop/ComparAcademy/NewGroup/ASP.NET/TechBlog/WebApp/Areas/Admin/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mehem/OneDrive/Desktop/ComparAcademy/NewGroup/ASP.NET/TechBlog/WebApp/Areas/Admin/Views/_ViewImports.cshtml]

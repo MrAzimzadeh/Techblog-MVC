@@ -1,0 +1,70 @@
+@model IEnumerable<User>
+@inject Microsoft.AspNetCore.Identity.UserManager<User> _userManager;
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <a href="/admin/Category/create">Create</a>
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#Id</th>
+                            <th>User Email</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Role</th>
+                            <th>
+                                Parametr
+                            </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#Id</th>
+                            <th>User Email</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Role</th>
+                            <th>
+                                Parametr
+                            </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @* *@
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Email</td>
+                                <td>@item.Name</td>
+                                <td>@item.Surname</td>
+                                <td>
+                                    @{
+                                        var roles = await _userManager.GetRolesAsync(item);
+                                        foreach (var role in roles)
+                                        {
+                                            <span>
+                                                @role
+                                            </span>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    <a href="/admin/user/addrole/@item.Id" class="btn btn-warning">Add Role</a>
+                                    <a href="/admin/user/deleterole/@item.Id" class="btn btn-danger">Delete Role</a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
