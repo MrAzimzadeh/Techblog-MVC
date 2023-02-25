@@ -13,7 +13,7 @@ using WebApp.Models;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -56,12 +56,17 @@ namespace WebApp.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var userAddRole = await _userManager.AddToRoleAsync(user , role);
+            var userAddRole = await _userManager.AddToRoleAsync(user, role);
             if (!userAddRole.Succeeded)
             {
                 return View();
             }
             return RedirectToAction(nameof(Index));
         }
+
+
+
+
+
     }
 }
