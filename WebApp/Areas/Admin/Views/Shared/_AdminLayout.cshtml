@@ -290,31 +290,23 @@
                                         <div class="small text-gray-500">58m</div>
                                     </div>
                                 </a>
-
                                 <a class="dropdown-item text-center small text-gray-500"
-                                    href="/admin/comment/index">Read More Messages</a>
+                                    href="/admin/comment/index">Read More Mes4sages</a>
                             </div>
                         </li>
-
                         <div class="topbar-divider d-none d-sm-block"></div>
-
                         <!-- Nav Item - User Information -->
-                        @await  Component.InvokeAsync("Auth")
-
+                        @await Component.InvokeAsync("Auth")
+                        <!-- ! Sorusacam -->
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
-
                 <div class="container-fluid">
-
                     <!-- Topbar -->
                     <!-- Page Heading -->
                     @RenderBody()
-
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
             <!-- Footer -->
