@@ -23,11 +23,11 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label class="form-label" asp-for="CategoryId"></label>
-                                    <select class="form-control" asp-for="CategoryId" asp-items="@ViewBag.Categories">
+                                    <label asp-for="CategoryId" class="form-label"></label>
+                                    <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Categories">
                                         <option value="">Select category</option>
                                     </select>
-                                    <span class="text-danger" asp-validation-for="Category.Id"></span>
+                                    <span class="text-danger" asp-validation-for="CategoryId"></span>
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -68,10 +68,10 @@
     </div>
 </form>
 
-@*@section Scripts{
+@section Scripts{
     <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
 
     <script>
         CKEDITOR.replace('editor1');
     </script>
-} *@
+}

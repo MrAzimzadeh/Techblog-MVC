@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kNDrmDzQS6EiCk8JAloGgHeA0Vw9DEiVwJgbffhGWm0=",
+  "Hash": "6zjlK0LaOI2PuB2UuzrkxUW0pod426D6467r03Ad9sY=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -33828,6 +33828,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\upload\\tech_video_03.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\wwwroot\\Uploads\\a98f5fa4-09fd-42ca-9ac4-b036a44719f422585.jpg",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "Uploads/a98f5fa4-09fd-42ca-9ac4-b036a44719f422585.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\a98f5fa4-09fd-42ca-9ac4-b036a44719f422585.jpg"
     }
   ]
 }
