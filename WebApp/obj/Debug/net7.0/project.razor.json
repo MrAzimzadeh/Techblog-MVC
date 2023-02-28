@@ -18672,6 +18672,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Areas\\Admin\\Views\\Article\\Edit.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\Article\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Views\\Auth\\Register.cshtml",
       "TargetPath": "Views\\Auth\\Register.cshtml",
       "FileKind": "mvc"

@@ -55,7 +55,6 @@ namespace WebApp.Areas.Admin.Controllers
             // {
             //     return View();
             // }
-
             var userId = _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             article.UserId = userId;
             var categories = _context.Categories.ToList();
@@ -82,10 +81,44 @@ namespace WebApp.Areas.Admin.Controllers
                     TagId = Tags[i]
                 };
                 tagList.Add(articleTag);
-
             }
             await _context.ArticleTags.AddRangeAsync(tagList);
             await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Edit(int? id)
+        {
+            var categories = _context.Categories.ToList();
+            var tags = _context.Tags.ToList();
+            ViewBag.Categories = new SelectList(categories, "Id", "CategoryName");
+            ViewData["Tags"] = tags;
+            var article = _context.Articles.Include(x => x.ArticleTags).FirstOrDefault(x => x.Id == id);
+            return View(article);
+        }
+        [HttpPost]
+        public IActionResult Edit(Article article, IFormFile Photo, List<int> Tags)
+        {
+            article.UpdatedDate = DateTime.Now;
+            // article.IsActive = ;
+            article.SeoUrl = SeoUrlHelper.SeoUrl(article.Title);
+            if (Photo != null)
+                article.PhotoUrl = ImageHelper.UploadSinglePhoto(Photo, _env);
+            var oldTags = _context.ArticleTags.Where(x => x.ArticleId == article.Id).ToList();
+            _context.ArticleTags.RemoveRange(oldTags);
+            _context.SaveChanges();
+            List<ArticleTag> tagList = new();
+            for (int i = 0; i < Tags.Count; i++)
+            {
+                ArticleTag articleTag = new()
+                {
+                    ArticleId = article.Id,
+                    TagId = Tags[i]
+                };
+                tagList.Add(articleTag);
+            }
+            _context.ArticleTags.AddRange(tagList);
+            _context.Articles.Update(article);
+            _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
     }
