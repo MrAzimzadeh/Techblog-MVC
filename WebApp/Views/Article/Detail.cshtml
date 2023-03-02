@@ -6,8 +6,8 @@
                         <div class="page-wrapper">
                             <div class="blog-title-area text-center">
                                 <ol class="breadcrumb hidden-xs-down">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">Blog</a></li>
+                                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="/home">Blog</a></li>
                                     <li class="breadcrumb-item active">@Model.Article.SeoUrl</li>
                                 </ol>
 
@@ -124,11 +124,8 @@
                                     </div><!-- end col -->
 
                                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-                                        <h4><a href="#">Jessica</a></h4>
-                                        <p>Quisque sed tristique felis. Lorem <a href="#">visit my website</a> amet,
-                                            consectetur adipiscing elit. Phasellus quis mi auctor, tincidunt nisl eget,
-                                            finibus odio. Duis tempus elit quis risus congue feugiat. Thanks for stop
-                                            Tech Blog!</p>
+                                        <h4><a href="#">@Model.Article.User.Name    </a></h4>
+                                        <p>@Model.Article.User.AboutAuthor</p>
 
                                         <div class="topsocial">
                                             <a href="#" data-toggle="tooltip" data-placement="bottom"

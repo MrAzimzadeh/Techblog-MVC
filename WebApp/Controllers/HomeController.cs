@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
 using WebApp.Models;
+using WebApp.ViewModels;
 
 namespace WebApp.Controllers;
 
@@ -22,9 +23,17 @@ public class HomeController : Controller
         var articles = _context.Articles
         .Include(x => x.Category)
         .Include(x => x.User)
-        .Where(x => x.IsDelete == false || x.IsActive == true)
+        .Where(x => x.IsDelete == false && x.IsActive == true)
         .ToList();
-        return View(articles);
+        var popularPost = _context.Articles.Include(x => x.Category)
+        .Include(x => x.User)
+        .Where(x => x.IsDelete == false && x.IsActive == true && x.PopularPost == true).OrderByDescending(X=>X.UpdatedDate).ToList();
+        HomeVM homeVM = new()
+        {
+            Articles = articles,
+            PopularPost = popularPost
+        };
+        return View(homeVM);
     }
 
     public IActionResult Privacy()

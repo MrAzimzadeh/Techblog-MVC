@@ -34,5 +34,7 @@ namespace WebApp.Models
         public string UserId { get; set; }
         public User User { get; set; }
         public List<Comment> Comments { get; set; }
+        //
+        public bool PopularPost { get; set; }
     }
 }

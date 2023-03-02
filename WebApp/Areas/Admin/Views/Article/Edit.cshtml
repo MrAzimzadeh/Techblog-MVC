@@ -25,6 +25,7 @@
                                 </div>
                             </div>
                             @if (User.IsInRole("Admin"))
+
                             {
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -33,6 +34,28 @@
                                     </div>
                                 </div>
                             }
+                            @if (User.IsInRole("Admin"))
+
+                            {
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        @Html.CheckBoxFor(x=>x.IsDelete)
+                                        <label asp-for="IsDelete" class="form-label"></label>
+                                    </div>
+                                </div>
+                            }
+                            @if (User.IsInRole("Admin"))
+
+                            {
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        @Html.CheckBoxFor(x=>x.PopularPost)
+                                        <label asp-for="PopularPost" class="form-label"></label>
+                                    </div>
+                                </div>
+                            }
+
+
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label asp-for="CategoryId" class="form-label"></label>
@@ -60,21 +83,35 @@
                                 <select id="articleTag" class="form-control" name="Tags" multiple>
                                     @foreach (var tag in ViewData["Tags"] as List<Tag>)
 
+
+
                                     {
+
+
 
                                         var result = Model.ArticleTags.Select(x => x.TagId).Contains(tag.Id);
 
+
+
                                         if (result)
+
+
 
                                         {
                                             <option selected value="@tag.Id">@tag.TagName</option>
                                         }
 
+
+
                                         else
+
+
 
                                         {
                                             <option value="@tag.Id">@tag.TagName</option>
                                         }
+
+
 
                                     }
                                 </select>

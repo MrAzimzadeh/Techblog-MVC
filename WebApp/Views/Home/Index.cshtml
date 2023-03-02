@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Article>
+﻿@model HomeVM
 @{
 ViewData["Title"] = "Home Page";
 }
@@ -7,40 +7,47 @@ ViewData["Title"] = "Home Page";
     <div class="container-fluid">
         <div class="masonry-blog clearfix">
             <div class="first-slot">
+                @foreach (var pop in Model.PopularPost.Take(1))
+                {
                 <div class="masonry-box post-media">
-                    <img src="~/upload/tech_01.jpg" alt="" class="img-fluid">
+                    
+                    <img src="@pop.PhotoUrl" alt="@pop.SeoUrl" class="img-fluid">
                     <div class="shadoweffect">
                         <div class="shadow-desc">
                             <div class="blog-meta">
-                                <span class="bg-orange"><a href="tech-category-01.html" title="">Technology</a></span>
-                                <h4><a href="tech-single.html" title="">Say hello to real handmade office
-                                        furniture! Clean & beautiful design</a></h4>
-                                <small><a href="tech-single.html" title="">24 July, 2017</a></small>
-                                <small><a href="tech-author.html" title="">by Amanda</a></small>
+                                <span class="bg-orange"><a href="/article/detail/@pop.Id/@pop.SeoUrl" title="">@pop.Category.CategoryName</a></span>
+                                <h4><a href="/article/detail/@pop.Id/@pop.SeoUrl" title="">@pop.Title</a></h4>
+                                <small><a href="/article/detail/@pop.Id/@pop.SeoUrl" title="">@pop.UpdatedDate</a></small>
+                                <small><a href="/article/detail/@pop.Id/@pop.SeoUrl" title="">by @pop.User.Name
+                                </a></small>
                             </div><!-- end meta -->
                         </div><!-- end shadow-desc -->
                     </div><!-- end shadow -->
                 </div><!-- end post-media -->
+                }
             </div><!-- end first-side -->
 
+            @foreach (var pop2 in Model.PopularPost.Skip(1).Take(2))
+            {
             <div class="second-slot">
                 <div class="masonry-box post-media">
-                    <img src="~/upload/tech_02.jpg" alt="" class="img-fluid">
+                    <img src="@pop2.PhotoUrl" alt="@pop2.SeoUrl" class="img-fluid">
                     <div class="shadoweffect">
                         <div class="shadow-desc">
                             <div class="blog-meta">
-                                <span class="bg-orange"><a href="tech-category-01.html" title="">Gadgets</a></span>
-                                <h4><a href="tech-single.html" title="">Do not make mistakes when choosing web
-                                        hosting</a></h4>
-                                <small><a href="tech-single.html" title="">03 July, 2017</a></small>
-                                <small><a href="tech-author.html" title="">by Jessica</a></small>
+                                <span class="bg-orange"><a href="/article/detail/@pop2.Id/@pop2.SeoUrl" title="">@pop2.Category.CategoryName</a></span>
+                                <h4><a href="/article/detail/@pop2.Id/@pop2.SeoUrl" title="">
+                                    @pop2.Title
+                                </a></h4>
+                                <small><a href="/article/detail/@pop2.Id/@pop2.SeoUrl" title="">@pop2.UpdatedDate</a></small>
+                                <small><a href="/article/detail/@pop2.Id/@pop2.SeoUrl" title="">by @pop2.User.Name  </a></small>
                             </div><!-- end meta -->
                         </div><!-- end shadow-desc -->
                     </div><!-- end shadow -->
                 </div><!-- end post-media -->
             </div><!-- end second-side -->
-
-            <div class="last-slot">
+            }
+            @* <div class="second-slot">
                 <div class="masonry-box post-media">
                     <img src="upload/tech_03.jpg" alt="" class="img-fluid">
                     <div class="shadoweffect">
@@ -55,7 +62,7 @@ ViewData["Title"] = "Home Page";
                         </div><!-- end shadow-desc -->
                     </div><!-- end shadow -->
                 </div><!-- end post-media -->
-            </div><!-- end second-side -->
+            </div><!-- end second-side --> *@
         </div><!-- end masonry -->
     </div>
 </section>
@@ -73,7 +80,7 @@ ViewData["Title"] = "Home Page";
                     @{
                         int caunt = 0;
                     }
-                        @foreach (var article in Model)
+                        @foreach (var article in Model.Articles)
                         {
                             caunt++; 
                             <div class="blog-box row">
@@ -131,168 +138,6 @@ ViewData["Title"] = "Home Page";
                         }
                         @* <hr class="invis"> *@
                        
-                        <hr class="invis">
-
-                        <div class="blog-box row">
-                            <div class="col-md-4">
-                                <div class="post-media">
-                                    <a href="tech-single.html" title="">
-                                        <img src="upload/tech_blog_04.jpg" alt="" class="img-fluid">
-                                        <div class="hovereffect"></div>
-                                    </a>
-                                </div><!-- end media -->
-                            </div><!-- end col -->
-
-                            <div class="blog-meta big-meta col-md-8">
-                                <h4><a href="tech-single.html" title="">Applications for taking photos of nature
-                                        in your mobile phones</a></h4>
-                                <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et
-                                    pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim
-                                    nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html"
-                                        title="">Design</a></small>
-                                <small><a href="tech-single.html" title="">19 July, 2017</a></small>
-                                <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i>
-                                        4441</a></small>
-                            </div><!-- end meta -->
-                        </div><!-- end blog-box -->
-
-                        <hr class="invis">
-
-                        <div class="blog-box row">
-                            <div class="col-md-4">
-                                <div class="post-media">
-                                    <a href="tech-single.html" title="">
-                                        <img src="upload/tech_blog_05.jpg" alt="" class="img-fluid">
-                                        <div class="hovereffect"></div>
-                                    </a>
-                                </div><!-- end media -->
-                            </div><!-- end col -->
-
-                            <div class="blog-meta big-meta col-md-8">
-                                <h4><a href="tech-single.html" title="">Say hello to colored strap models in
-                                        smart hours</a></h4>
-                                <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et
-                                    pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim
-                                    nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html"
-                                        title="">Materials</a></small>
-                                <small><a href="tech-single.html" title="">18 July, 2017</a></small>
-                                <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i>
-                                        33312</a></small>
-                            </div><!-- end meta -->
-                        </div><!-- end blog-box -->
-
-                        <hr class="invis">
-
-                        <div class="blog-box row">
-                            <div class="col-md-4">
-                                <div class="post-media">
-                                    <a href="tech-single.html" title="">
-                                        <img src="upload/tech_blog_06.jpg" alt="" class="img-fluid">
-                                        <div class="hovereffect"></div>
-                                    </a>
-                                </div><!-- end media -->
-                            </div><!-- end col -->
-
-                            <div class="blog-meta big-meta col-md-8">
-                                <h4><a href="tech-single.html" title="">How about evaluating your old mobile
-                                        phones in different ways?</a></h4>
-                                <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et
-                                    pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim
-                                    nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html"
-                                        title="">Gadgets</a></small>
-                                <small><a href="tech-single.html" title="">17 July, 2017</a></small>
-                                <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i>
-                                        4440</a></small>
-                            </div><!-- end meta -->
-                        </div><!-- end blog-box -->
-
-                        <hr class="invis">
-
-                        <div class="blog-box row">
-                            <div class="col-md-4">
-                                <div class="post-media">
-                                    <a href="tech-single.html" title="">
-                                        <img src="upload/tech_blog_07.jpg" alt="" class="img-fluid">
-                                        <div class="hovereffect"></div>
-                                    </a>
-                                </div><!-- end media -->
-                            </div><!-- end col -->
-
-                            <div class="blog-meta big-meta col-md-8">
-                                <h4><a href="tech-single.html" title="">Drinking coffee at the computer rests
-                                        the spirit</a></h4>
-                                <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et
-                                    pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim
-                                    nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html"
-                                        title="">Technology</a></small>
-                                <small><a href="tech-single.html" title="">16 July, 2017</a></small>
-                                <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i>
-                                        4412</a></small>
-                            </div><!-- end meta -->
-                        </div><!-- end blog-box -->
-
-                        <hr class="invis">
-
-                        <div class="blog-box row">
-                            <div class="col-md-4">
-                                <div class="post-media">
-                                    <a href="tech-single.html" title="">
-                                        <img src="upload/tech_blog_08.jpg" alt="" class="img-fluid">
-                                        <div class="hovereffect"></div>
-                                    </a>
-                                </div><!-- end media -->
-                            </div><!-- end col -->
-
-                            <div class="blog-meta big-meta col-md-8">
-                                <h4><a href="tech-single.html" title="">If you are considering buying a new safe
-                                        for your mobile phone, be sure to read this article</a></h4>
-                                <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et
-                                    pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim
-                                    nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html"
-                                        title="">Reviews</a></small>
-                                <small><a href="tech-single.html" title="">15 July, 2017</a></small>
-                                <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i>
-                                        44123</a></small>
-                            </div><!-- end meta -->
-                        </div><!-- end blog-box -->
-
-                        <hr class="invis">
-
-                        <div class="blog-box row">
-                            <div class="col-md-4">
-                                <div class="post-media">
-                                    <a href="tech-single.html" title="">
-                                        <img src="upload/tech_blog_09.jpg" alt="" class="img-fluid">
-                                        <div class="hovereffect"></div>
-                                    </a>
-                                </div><!-- end media -->
-                            </div><!-- end col -->
-
-                            <div class="blog-meta big-meta col-md-8">
-                                <h4><a href="tech-single.html" title="">Enjoy a summer with a colorful
-                                        headset</a></h4>
-                                <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et
-                                    pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim
-                                    nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html"
-                                        title="">Technology</a></small>
-                                <small><a href="tech-single.html" title="">14 July, 2017</a></small>
-                                <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i>
-                                        2214</a></small>
-                            </div><!-- end meta -->
-                        </div><!-- end blog-box -->
-
                         <hr class="invis">
 
                         <div class="blog-box row">
