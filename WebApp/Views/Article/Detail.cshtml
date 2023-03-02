@@ -185,13 +185,17 @@
                                     }
                                     @foreach (var comment in Model.Article.Comments)
                                    {
-                                    
+                                        var a = comment.CreatedDate;
+                                        var b = DateTime.Now;
+                                        var c = a - b;
                                         <div class="media">
                                             <a class="media-left" href="#">
                                                 <img src="@comment.User.PhotoUrl" alt="" class="rounded-circle">
                                             </a>
                                             <div class="media-body">
-                                                <h4 class="media-heading user_name">@comment.User.Name @comment.User.Surname <small>5 days ago</small></h4>
+                                                <h4 class="media-heading user_name">@comment.User.Name @comment.User.Surname <small>
+                                                    @c.ToString("mm") 
+                                                </small></h4>
                                                 <p>@comment.Content</p>
                                             </div>
                                         </div> 
