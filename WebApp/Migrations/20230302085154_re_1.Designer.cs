@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Data;
 
@@ -11,9 +12,11 @@ using WebApp.Data;
 namespace WebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230302085154_re_1")]
+    partial class re_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -283,7 +286,9 @@ namespace WebApp.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Comments");
                 });
@@ -484,8 +489,8 @@ namespace WebApp.Migrations
                         .IsRequired();
 
                     b.HasOne("WebApp.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithOne("Comment")
+                        .HasForeignKey("WebApp.Models.Comment", "UserId");
 
                     b.Navigation("Article");
 
@@ -512,6 +517,9 @@ namespace WebApp.Migrations
             modelBuilder.Entity("WebApp.Models.User", b =>
                 {
                     b.Navigation("Articles");
+
+                    b.Navigation("Comment")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
