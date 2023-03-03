@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebApp.Data;
 using WebApp.Models;
@@ -12,7 +13,7 @@ using WebApp.Models;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    [Authorize(Roles ="Admin, Admin Editor")] 
+    [Authorize(Roles = "Admin, Admin Editor")]
     public class CategoryController : Controller
     {
         private readonly AppDbContext _context;
@@ -25,7 +26,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            var category = _context.Categories.ToList();
+            var category = _context.Categories.Include(x=>x.Articles).ToList();
             return View(category);
         }
 
@@ -83,6 +84,19 @@ namespace WebApp.Areas.Admin.Controllers
             _context.Categories.Remove(category);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Detail(int id)
+        {
+            var category = _context.Categories
+                .Include(c => c.Articles)
+                .FirstOrDefault(c => c.Id == id);
+            ViewData["CatName"] = category.CategoryName;
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return View(category.Articles);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
