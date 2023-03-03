@@ -119,9 +119,9 @@ ViewData["Title"] = "Home Page";
                                     <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i> @article.ViewCount</a></small>
                                 </div><!-- end meta -->
                             </div>
-                        <hr class="invis">
-                         @if (caunt / 3 == 1)
-                            {
+                        <hr class="invis">   
+                           @if (caunt % 3 == 0 || caunt == Model.Articles.Count())
+                                {
                                 <div class="row">
                                     <div class="col-lg-10 offset-lg-1">
                                         <div class="banner-spot clearfix">
@@ -133,8 +133,11 @@ ViewData["Title"] = "Home Page";
                                 </div>
                                 <hr class="invis">
                                 <!-- end row -->
+                            }else
+                            {
+                                <hr class="invis">
+                                
                             }
-
                         }
                         @* <hr class="invis"> *@
                        
