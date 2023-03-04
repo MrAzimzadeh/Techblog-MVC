@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
+using WebApp.Helpers;
 using WebApp.Models;
 using WebApp.ViewModels;
 
@@ -17,13 +18,20 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(int pg = 1)
     {
-
+        const int pageSize = 9;
+        if (pg < 1)
+        {
+            pg = 1; 
+        }
+        int articleCount = _context.Articles.Count();
+        var pager =  new Pager(articleCount , pg  , pageSize);
+        int arcSkip = (pg -1 ) * pageSize;
         var articles = _context.Articles
         .Include(x => x.Category)
         .Include(x => x.User)
-        .Where(x => x.IsDelete == false && x.IsActive == true)
+        .Where(x => x.IsDelete == false && x.IsActive == true).Skip(arcSkip).Take(pager.PageSize)
         .ToList();
         var popularPost = _context.Articles.Include(x => x.Category)
         .Include(x => x.User)
