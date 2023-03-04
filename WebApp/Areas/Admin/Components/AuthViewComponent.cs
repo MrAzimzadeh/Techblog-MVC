@@ -22,5 +22,6 @@ namespace WebApp.Areas.Admin.Components
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
             return View(user);
         }
+        
     }
 }
