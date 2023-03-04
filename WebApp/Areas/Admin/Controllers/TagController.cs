@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebApp.Data;
 using WebApp.Models;
@@ -12,7 +13,7 @@ using WebApp.Models;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    [Authorize(Roles ="Admin , Admin Editor , Moderator")] 
+    [Authorize(Roles = "Admin , Admin Editor , Moderator")]
 
     public class TagController : Controller
     {
@@ -64,7 +65,7 @@ namespace WebApp.Areas.Admin.Controllers
 
         public IActionResult Edit(int id)
         {
-            var edit = _context.Tags.FirstOrDefault(x=>x.Id == id);
+            var edit = _context.Tags.FirstOrDefault(x => x.Id == id);
             return View(edit);
         }
         [HttpPost]
@@ -81,7 +82,19 @@ namespace WebApp.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Detail(int id)
+        {
+            var tag = _context.Tags
+                .Include(c => c.ArticleTag).ThenInclude(x=>x.Article)
+                .FirstOrDefault(c => c.Id == id);
+            ViewData["TagName"] = tag.TagName;
+            if (tag == null)
+            {
+                return NotFound();
+            }
 
+            return View(tag.ArticleTag);
+        }
 
 
 

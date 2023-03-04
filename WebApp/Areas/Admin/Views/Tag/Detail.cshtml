@@ -1,0 +1,28 @@
+@model IEnumerable<ArticleTag>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <H1 class=" text-center"> @ViewData["TagName"] </H1>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var article in Model)
+        {
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <img class="card-img-top img-fluid h-50" style="" src="@article.Article.PhotoUrl"
+                        alt="@article.Article.SeoUrl">
+                    <div class="card-body">
+                        <h2 class="card-title">@article.Article.Title</h2>
+                        <p class="card-text">@Html.Raw(article.Article.Content.Substring(0 , 10))</p>
+                        <a href="/article/detail/@article.Article.Id/@article.Article.SeoUrl" class="btn btn-primary">
+                            Read more
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

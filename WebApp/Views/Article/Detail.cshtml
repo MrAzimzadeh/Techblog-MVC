@@ -47,7 +47,7 @@
                                     <span>Tags</span>
                                     @foreach (var tag in Model.Article.ArticleTags)
                                     {
-                                    <small><a href="#" title="">@tag.Tag.TagName</a></small>
+                                    <small><a href="/tag/detail/@tag.Tag.Id" title="">@tag.Tag.TagName</a></small>
                                     }
                                 </div><!-- end meta -->
 

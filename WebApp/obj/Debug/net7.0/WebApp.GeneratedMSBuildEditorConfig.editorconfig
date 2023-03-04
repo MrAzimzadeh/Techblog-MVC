@@ -80,6 +80,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGFnXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/mehem/OneDrive/Desktop/ComparAcademy/NewGroup/ASP.NET/TechBlog/WebApp/Areas/Admin/Views/Tag/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGFnXERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/mehem/OneDrive/Desktop/ComparAcademy/NewGroup/ASP.NET/TechBlog/WebApp/Areas/Admin/Views/Tag/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGFnXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -134,6 +138,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/mehem/OneDrive/Desktop/ComparAcademy/NewGroup/ASP.NET/TechBlog/WebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mehem/OneDrive/Desktop/ComparAcademy/NewGroup/ASP.NET/TechBlog/WebApp/Views/Tag/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFnXERldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mehem/OneDrive/Desktop/ComparAcademy/NewGroup/ASP.NET/TechBlog/WebApp/Views/_ViewImports.cshtml]
