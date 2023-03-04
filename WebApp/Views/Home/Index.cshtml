@@ -2,6 +2,15 @@
 @{
 ViewData["Title"] = "Home Page";
 }
+@{
+    Pager pager = new();
+    int pageNo = 0;
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
 
 <section class="section first-section">
     <div class="container-fluid">
@@ -172,14 +181,39 @@ ViewData["Title"] = "Home Page";
                 <div class="row">
                     <div class="col-md-12">
                         <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-start">
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
+                             @if(pager.TotalPage > 0)
+                            {
+                            
+                                <ul class="pagination justify-content-start">
+
+                                    @if (pager.CurrentPage > 1)
+                                    {
+                                        <li class="page-item">
+                                            <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="1">First</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
+                                        </li>
+                                    }
+                                    @for (int pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                                    {
+
+                                        <li class="page-item ">
+                                            <a class="page-link @((pge==pager.CurrentPage)?"page-link-active":"")" asp-controller="Home" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                                        </li>
+                                    }
+                                    @if (pager.CurrentPage < pager.TotalPage)
+                                        {
+                                            <li class="page-item">
+                                                <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)" >Next</a>
+                                            </li>
+
+                                            <li class="page-item">
+                                                <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@(pager.TotalPage)">Last</a>
+                                            </li>
+                                        }
+                                </ul>
+                            }
                         </nav>
                     </div><!-- end col -->
                 </div><!-- end row -->

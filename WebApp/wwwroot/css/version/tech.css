@@ -274,6 +274,7 @@ a:focus {
 
 .btn,
 .page-link:hover,
+.page-link-active,
 .page-link:focus,
 .btn:hover,
 .btn:focus {
