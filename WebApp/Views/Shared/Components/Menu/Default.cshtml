@@ -50,25 +50,28 @@
                                 {
                                     @foreach (var item in catList.Articles.Take(3))
                                     {
-                                        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                                            <div class="blog-box">
-                                                <div class="post-media">
-                                                    <a href="/article/Detail/@item.Id/@item.SeoUrl" title="">
-                                                        <img src="@item.PhotoUrl" alt="" class="img-fluid">
-                                                        <div class="hovereffect">
-                                                        </div><!-- end hover -->
-                                                        <span class="menucat">Science</span>
-                                                    </a>
-                                                </div><!-- end media -->
-                                                <div class="blog-meta">
-                                                    <h4>
-                                                        <a href="/article/detail/@item.Id/@item.SeoUrl" title="">
-                                                            @Html.Raw(item.Title.Substring(0,5))
+                                        if (item.IsActive == true )
+                                        {
+                                            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="blog-box">
+                                                    <div class="post-media">
+                                                        <a href="/article/Detail/@item.Id/@item.SeoUrl" title="">
+                                                            <img src="@item.PhotoUrl" alt="" class="img-fluid">
+                                                            <div class="hovereffect">
+                                                            </div><!-- end hover -->
+                                                            <span class="menucat">Science</span>
                                                         </a>
-                                                    </h4>
-                                                </div><!-- end meta -->
-                                            </div><!-- end blog-box -->
-                                        </div>
+                                                    </div><!-- end media -->
+                                                    <div class="blog-meta">
+                                                        <h4>
+                                                            <a href="/article/detail/@item.Id/@item.SeoUrl" title="">
+                                                                @Html.Raw(item.Title.Substring(0,5))
+                                                            </a>
+                                                        </h4>
+                                                    </div><!-- end meta -->
+                                                </div><!-- end blog-box -->
+                                            </div>
+                                        }
                                         counter1++;
                                     }
                                 }

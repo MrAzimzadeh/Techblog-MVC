@@ -21,7 +21,7 @@ namespace WebApp.Components
         {
             var menu = _context.Articles.Include(x => x.Category).ToList();
             var categories = _context.Categories.OrderByDescending(x=>x.Id).ToList();
-            var articles  = _context.Articles.Include(x=>x.Category).OrderByDescending(x=>x.Id).ToList();
+            var articles  = _context.Articles.Include(x=>x.Category).Where(x => x.IsDelete == false && x.IsActive == true).OrderByDescending(x=>x.Id).ToList();
             // // ViewData["CategoryList"] = viewResult;
             MenuVM menuVM = new MenuVM
             {

@@ -23,23 +23,20 @@ public class HomeController : Controller
         const int pageSize = 9;
         if (pg < 1)
         {
-            pg = 1; 
+            pg = 1;
         }
         int articleCount = _context.Articles.Count();
-        
-        var pager =  new Pager(articleCount , pg  , pageSize);
-        
-        int arcSkip = (pg -1 ) * pageSize;
-        
+        var pager = new Pager(articleCount, pg, pageSize);
+        int arcSkip = (pg - 1) * pageSize;
         var articles = _context.Articles
         .Include(x => x.Category)
         .Include(x => x.User)
-        .Where(x => x.IsDelete == false && x.IsActive == true).Skip(arcSkip).Take(pager.PageSize)
+        .Where(x => x.IsDelete == false && x.IsActive == true).OrderByDescending(x => x.Id).Skip(arcSkip).Take(pager.PageSize)
         .ToList();
         ViewBag.Pager = pager;
         var popularPost = _context.Articles.Include(x => x.Category)
         .Include(x => x.User)
-        .Where(x => x.IsDelete == false && x.IsActive == true && x.PopularPost == true).OrderByDescending(X=>X.UpdatedDate).ToList();
+        .Where(x => x.IsDelete == false && x.IsActive == true && x.PopularPost == true).OrderByDescending(X => X.UpdatedDate).ToList();
         HomeVM homeVM = new()
         {
             Articles = articles,
