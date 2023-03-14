@@ -26,6 +26,8 @@
                             </div>
                             @if (User.IsInRole("Admin"))
 
+
+
                             {
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -35,6 +37,8 @@
                                 </div>
                             }
                             @if (User.IsInRole("Admin"))
+
+
 
                             {
                                 <div class="col-lg-12">
@@ -46,6 +50,8 @@
                             }
                             @if (User.IsInRole("Admin"))
 
+
+
                             {
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -54,7 +60,15 @@
                                     </div>
                                 </div>
                             }
-
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        @Html.CheckBoxFor(x=>x.Gadgets)
+                                        <label asp-for="Gadgets" class="form-label"></label>
+                                    </div>
+                                </div>
+                            }
 
                             <div class="col-lg-12">
                                 <div class="form-group">
@@ -85,7 +99,15 @@
 
 
 
+
+
+
+
                                     {
+
+
+
+
 
 
 
@@ -93,7 +115,15 @@
 
 
 
+
+
+
+
                                         if (result)
+
+
+
+
 
 
 
@@ -103,13 +133,25 @@
 
 
 
+
+
+
+
                                         else
+
+
+
+
 
 
 
                                         {
                                             <option value="@tag.Id">@tag.TagName</option>
                                         }
+
+
+
+
 
 
 

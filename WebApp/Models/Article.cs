@@ -36,5 +36,6 @@ namespace WebApp.Models
         public List<Comment> Comments { get; set; }
         //
         public bool PopularPost { get; set; }
+        public bool Gadgets { get; set; }
     }
 }
