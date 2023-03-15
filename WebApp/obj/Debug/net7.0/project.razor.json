@@ -15174,6 +15174,23 @@
         }
       },
       {
+        "HashCode": -730386511,
+        "Kind": "MVC.ViewComponent",
+        "Name": "__Generated__ContactViewComponentTagHelper",
+        "AssemblyName": "WebApp",
+        "CaseSensitive": false,
+        "TagMatchingRules": [
+          {
+            "TagName": "vc:contact"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "ITagHelper",
+          "Common.TypeName": "__Generated__ContactViewComponentTagHelper",
+          "MVC.ViewComponent.Name": "Contact"
+        }
+      },
+      {
         "HashCode": -1399968540,
         "Kind": "MVC.ViewComponent",
         "Name": "__Generated__MenuViewComponentTagHelper",
@@ -18819,8 +18836,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Views\\Contct\\Index.cshtml",
-      "TargetPath": "Views\\Contct\\Index.cshtml",
+      "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Views\\Contact\\index.cshtml",
+      "TargetPath": "Views\\Contact\\index.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -18831,6 +18848,11 @@
     {
       "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Areas\\Admin\\Views\\Role\\Index.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\Role\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Areas\\Admin\\Views\\Shared\\Components\\Contact\\Default.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\Shared\\Components\\Contact\\Default.cshtml",
       "FileKind": "mvc"
     },
     {

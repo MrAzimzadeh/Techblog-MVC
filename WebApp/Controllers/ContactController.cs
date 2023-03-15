@@ -38,6 +38,7 @@ namespace WebApp.Controllers
             {
                 return View(contact);
             }
+            contact.DateTime = DateTime.Now;
             var result = _context.Contacts.Add(contact);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));

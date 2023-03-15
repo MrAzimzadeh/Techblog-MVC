@@ -14,11 +14,12 @@ namespace WebApp.Models
         [EmailAddress]
         [Required]
         public string Email { get; set; }
-        [RegularExpression(@"[0-15]", ErrorMessage = "Sadece rakam girin.")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Sadece rakam girin.")]
         public string Phone { get; set; }
         [Required]
         public string Subject { get; set; }
         [Required]
         public string Mesaage { get; set; }
+        public DateTime DateTime { get; set; }
     }
 }

@@ -20,8 +20,12 @@ namespace WebApp.Areas.Admin.Components
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
-            return View(user);
+            ViewData["user"] = user;
+            var viewResult = View(viewName: "Default", model: user);
+            return await Task.FromResult<IViewComponentResult>(viewResult);
+            // return View(user);
+
         }
-        
+
     }
 }
