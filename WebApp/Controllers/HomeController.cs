@@ -28,31 +28,36 @@ public class HomeController : Controller
         int articleCount = _context.Articles.Count();
         var pager = new Pager(articleCount, pg, pageSize);
         int arcSkip = (pg - 1) * pageSize;
+
         var articles = _context.Articles
         .Include(x => x.Category)
         .Include(x => x.User)
         .Where(x => x.IsDelete == false && x.IsActive == true).OrderByDescending(x => x.Id).Skip(arcSkip).Take(pager.PageSize)
         .ToList();
         ViewBag.Pager = pager;
+
         var popularPost = _context.Articles.Include(x => x.Category)
         .Include(x => x.User)
         .Where(x => x.IsDelete == false && x.IsActive == true && x.PopularPost == true).OrderByDescending(X => X.UpdatedDate).ToList();
 
-            var popularSection = _context.Articles
-                    .Include(x => x.Category)
-                    .Include(x => x.User)
-                    .Where(x => x.IsDelete == false && x.IsActive == true)
-                    .OrderByDescending(x => x.ViewCount)
-                    .Take(5) // sadece en yüksek 10 görüntülenmeye sahip olanları al
-                    .ToList();
+        var popularSection = _context.Articles
+                .Include(x => x.Category)
+                .Include(x => x.User)
+                .Where(x => x.IsDelete == false && x.IsActive == true)
+                .OrderByDescending(x => x.ViewCount)
+                .Take(5) // sadece en yüksek 10 görüntülenmeye sahip olanları al
+                .ToList();
+
+        var ads = _context.Advertisements.Where(X => X.IsDeleted == false).ToList();
         HomeVM homeVM = new()
         {
             Articles = articles,
             PopularPost = popularPost,
-            PopularSection = popularSection
-
+            PopularSection = popularSection,
+            Advertisements = ads
         };
         return View(homeVM);
+        
     }
 
     public IActionResult Privacy()

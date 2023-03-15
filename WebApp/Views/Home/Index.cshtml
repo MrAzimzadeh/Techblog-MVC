@@ -1,11 +1,11 @@
 ﻿@model HomeVM
 @{
-ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home Page";
 }
 @{
     Pager pager = new();
     int pageNo = 0;
-    if(ViewBag.Pager != null)
+    if (ViewBag.Pager != null)
     {
         pager = ViewBag.Pager;
         pageNo = pager.CurrentPage;
@@ -18,59 +18,67 @@ ViewData["Title"] = "Home Page";
             <div class="first-slot">
                 @foreach (var pop in Model.PopularPost.Take(1))
                 {
-                <div class="masonry-box post-media">
-                    
-                    <img src="@pop.PhotoUrl" alt="@pop.SeoUrl" class="img-fluid">
-                    <div class="shadoweffect">
-                        <div class="shadow-desc">
-                            <div class="blog-meta">
-                                <span class="bg-orange"><a href="/Category/detail/@pop.Category.Id/" title="">@pop.Category.CategoryName</a></span>
-                                <h4><a href="/article/detail/@pop.Id/@pop.SeoUrl" title="">@pop.Title</a></h4>
-                                <small><a href="/article/detail/@pop.Id/@pop.SeoUrl" title="">@pop.UpdatedDate</a></small>
-                                <small><a href="/article/detail/@pop.Id/@pop.SeoUrl" title="">by @pop.User.Name
-                                </a></small>
-                            </div><!-- end meta -->
-                        </div><!-- end shadow-desc -->
-                    </div><!-- end shadow -->
-                </div><!-- end post-media -->
+                    <div class="masonry-box post-media">
+
+                        <img src="@pop.PhotoUrl" alt="@pop.SeoUrl" class="img-fluid">
+                        <div class="shadoweffect">
+                            <div class="shadow-desc">
+                                <div class="blog-meta">
+                                    <span class="bg-orange"><a href="/Category/detail/@pop.Category.Id/" title="">@pop.Category.CategoryName</a></span>
+                                    <h4><a href="/article/detail/@pop.Id/@pop.SeoUrl" title="">@pop.Title</a></h4>
+                                    <small><a href="/article/detail/@pop.Id/@pop.SeoUrl" title="">@pop.UpdatedDate</a></small>
+                                    <small>
+                                        <a href="/article/detail/@pop.Id/@pop.SeoUrl" title="">
+                                            by @pop.User.Name
+                                        </a>
+                                    </small>
+                                </div><!-- end meta -->
+                            </div><!-- end shadow-desc -->
+                        </div><!-- end shadow -->
+                    </div>
+
+                    <!-- end post-media -->
                 }
             </div><!-- end first-side -->
-
             @foreach (var pop2 in Model.PopularPost.Skip(1).Take(2))
             {
-            <div class="second-slot">
-                <div class="masonry-box post-media">
-                    <img src="@pop2.PhotoUrl" alt="@pop2.SeoUrl" class="img-fluid">
-                    <div class="shadoweffect">
-                        <div class="shadow-desc">
-                            <div class="blog-meta">
-                                <span class="bg-orange"><a href="/article/detail/@pop2.Id/@pop2.SeoUrl" title="">@pop2.Category.CategoryName</a></span>
-                                <h4><a href="/article/detail/@pop2.Id/@pop2.SeoUrl" title="">
-                                    @pop2.Title
-                                </a></h4>
-                                <small><a href="/article/detail/@pop2.Id/@pop2.SeoUrl" title="">@pop2.UpdatedDate</a></small>
-                                <small><a href="/article/detail/@pop2.Id/@pop2.SeoUrl" title="">by @pop2.User.Name  </a></small>
-                            </div><!-- end meta -->
-                        </div><!-- end shadow-desc -->
-                    </div><!-- end shadow -->
-                </div><!-- end post-media -->
-            </div><!-- end second-side -->
+                <div class="second-slot">
+                    <div class="masonry-box post-media">
+                        <img src="@pop2.PhotoUrl" alt="@pop2.SeoUrl" class="img-fluid">
+                        <div class="shadoweffect">
+                            <div class="shadow-desc">
+                                <div class="blog-meta">
+                                    <span class="bg-orange"><a href="/article/detail/@pop2.Id/@pop2.SeoUrl" title="">@pop2.Category.CategoryName</a></span>
+                                    <h4>
+                                        <a href="/article/detail/@pop2.Id/@pop2.SeoUrl" title="">
+                                            @pop2.Title
+                                        </a>
+                                    </h4>
+                                    <small><a href="/article/detail/@pop2.Id/@pop2.SeoUrl" title="">@pop2.UpdatedDate</a></small>
+                                    <small><a href="/article/detail/@pop2.Id/@pop2.SeoUrl" title="">by @pop2.User.Name  </a></small>
+                                </div><!-- end meta -->
+                            </div><!-- end shadow-desc -->
+                        </div><!-- end shadow -->
+                    </div><!-- end post-media -->
+                </div>
+
+                <!-- end second-side -->
             }
             @* <div class="second-slot">
-                <div class="masonry-box post-media">
-                    <img src="upload/tech_03.jpg" alt="" class="img-fluid">
-                    <div class="shadoweffect">
-                        <div class="shadow-desc">
-                            <div class="blog-meta">
-                                <span class="bg-orange"><a href="tech-category-01.html" title="">Technology</a></span>
-                                <h4><a href="tech-single.html" title="">The most reliable Galaxy Note 8 images
-                                        leaked</a></h4>
-                                <small><a href="tech-single.html" title="">01 July, 2017</a></small>
-                                <small><a href="tech-author.html" title="">by Jessica</a></small>
-                            </div><!-- end meta -->
-                        </div><!-- end shadow-desc -->
-                    </div><!-- end shadow -->
-                </div><!-- end post-media -->
+            <div class="masonry-box post-media">
+            <img src="upload/tech_03.jpg" alt="" class="img-fluid">
+            <div class="shadoweffect">
+            <div class="shadow-desc">
+            <div class="blog-meta">
+            <span class="bg-orange"><a href="tech-category-01.html" title="">Technology</a></span>
+            <h4><a href="tech-single.html" title="">The most reliable Galaxy Note 8 images
+            leaked</a></h4>
+            <small><a href="tech-single.html" title="">01 July, 2017</a></small>
+            <small><a href="tech-author.html" title="">by Jessica</a></small>
+            </div><!-- end meta -->
+            </div><!-- end shadow-desc -->
+            </div><!-- end shadow -->
+            </div><!-- end post-media -->
             </div><!-- end second-side --> *@
         </div><!-- end masonry -->
     </div>
@@ -86,12 +94,13 @@ ViewData["Title"] = "Home Page";
                     </div><!-- end blog-top -->
 
                     <div class="blog-list clearfix">
-                    @{
-                        int caunt = 0;
-                    }
+                        @{
+                            int caunt = 0;
+                            int adIndex = 0;
+                        }
                         @foreach (var article in Model.Articles)
                         {
-                            caunt++; 
+                            caunt++;
                             <div class="blog-box row">
                                 <div class="col-md-4">
                                     <div class="post-media">
@@ -128,23 +137,35 @@ ViewData["Title"] = "Home Page";
                                     <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i> @article.ViewCount</a></small>
                                 </div><!-- end meta -->
                             </div>
-                        <hr class="invis">   
-                           @if (caunt % 3 == 0 || caunt == Model.Articles.Count())
-                                {
+                            <hr class="invis">
+                            if (adIndex % 3 == 0 || adIndex == Model.Articles.Count() - 1)
+                            {
+                                // Get the next ad from the list
+                                var ad = Model.Advertisements[adIndex % Model.Advertisements.Count];
+
+                                // Render the ad
                                 <div class="row">
                                     <div class="col-lg-10 offset-lg-1">
                                         <div class="banner-spot clearfix">
                                             <div class="banner-img">
-                                                <img src="~/upload/banner_02.jpg" alt="" class="img-fluid">
+                                                <a href="@ad.DirectionAddress">
+                                                    <img src="@ad.PhotoUrl" alt="" class="img-fluid">
+                                                </a>
                                             </div><!-- end banner-img -->
                                         </div><!-- end banner -->
                                     </div><!-- end col -->
                                 </div>
                                 <hr class="invis">
-                                <!-- end row -->
-                            }else
+
+                                // Increment the ad index
+                                adIndex++;
+                            }
+                            else
                             {
-                                <hr class="invis">
+                                // Increment the article index
+                        <hr class="invis">
+
+                                adIndex++;
                             }
                         }
                         @* <hr class="invis"> *@
@@ -160,17 +181,29 @@ ViewData["Title"] = "Home Page";
                             </div><!-- end col -->
 
                             <div class="blog-meta big-meta col-md-8">
-                                <h4><a href="tech-single.html" title="">Google has developed a brand new
-                                        algorithm. Forget all your knowledge!</a></h4>
-                                <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et
+                                <h4>
+                                    <a href="tech-single.html" title="">
+                                        Google has developed a brand new
+                                        algorithm. Forget all your knowledge!
+                                    </a>
+                                </h4>
+                                <p>
+                                    Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et
                                     pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim
-                                    nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html"
-                                        title="">Gadgets</a></small>
+                                    nibh, maximus ac felis nec, maximus tempor odio.
+                                </p>
+                                <small class="firstsmall">
+                                    <a class="bg-orange" href="tech-category-01.html"
+                                       title="">Gadgets</a>
+                                </small>
                                 <small><a href="tech-single.html" title="">13 July, 2017</a></small>
                                 <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i>
-                                        3331</a></small>
+                                <small>
+                                    <a href="tech-single.html" title="">
+                                        <i class="fa fa-eye"></i>
+                                        3331
+                                    </a>
+                                </small>
                             </div><!-- end meta -->
                         </div><!-- end blog-box -->
                     </div><!-- end blog-list -->
@@ -181,9 +214,9 @@ ViewData["Title"] = "Home Page";
                 <div class="row">
                     <div class="col-md-12">
                         <nav aria-label="Page navigation">
-                             @if(pager.TotalPage > 0)
+                            @if (pager.TotalPage > 0)
                             {
-                            
+
                                 <ul class="pagination justify-content-start">
 
                                     @if (pager.CurrentPage > 1)
@@ -203,15 +236,15 @@ ViewData["Title"] = "Home Page";
                                         </li>
                                     }
                                     @if (pager.CurrentPage < pager.TotalPage)
-                                        {
-                                            <li class="page-item">
-                                                <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)" >Next</a>
-                                            </li>
+                                    {
+                                        <li class="page-item">
+                                            <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+                                        </li>
 
-                                            <li class="page-item">
-                                                <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@(pager.TotalPage)">Last</a>
-                                            </li>
-                                        }
+                                        <li class="page-item">
+                                            <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@(pager.TotalPage)">Last</a>
+                                        </li>
+                                    }
                                 </ul>
                             }
                         </nav>
@@ -242,8 +275,12 @@ ViewData["Title"] = "Home Page";
                                     </a>
                                 </div><!-- end media -->
                                 <div class="blog-meta">
-                                    <h4><a href="tech-single.html" title="">We prepared the best 10 laptop
-                                            presentations for you</a></h4>
+                                    <h4>
+                                        <a href="tech-single.html" title="">
+                                            We prepared the best 10 laptop
+                                            presentations for you
+                                        </a>
+                                    </h4>
                                 </div><!-- end meta -->
                             </div><!-- end blog-box -->
 
@@ -259,8 +296,12 @@ ViewData["Title"] = "Home Page";
                                     </a>
                                 </div><!-- end media -->
                                 <div class="blog-meta">
-                                    <h4><a href="tech-single.html" title="">We are guests of ABC Design Studio -
-                                            Vlog</a></h4>
+                                    <h4>
+                                        <a href="tech-single.html" title="">
+                                            We are guests of ABC Design Studio -
+                                            Vlog
+                                        </a>
+                                    </h4>
                                 </div><!-- end meta -->
                             </div><!-- end blog-box -->
 
@@ -276,8 +317,12 @@ ViewData["Title"] = "Home Page";
                                     </a>
                                 </div><!-- end media -->
                                 <div class="blog-meta">
-                                    <h4><a href="tech-single.html" title="">Both blood pressure monitor and
-                                            intelligent clock</a></h4>
+                                    <h4>
+                                        <a href="tech-single.html" title="">
+                                            Both blood pressure monitor and
+                                            intelligent clock
+                                        </a>
+                                    </h4>
                                 </div><!-- end meta -->
                             </div><!-- end blog-box -->
                         </div><!-- end videos -->
@@ -289,14 +334,14 @@ ViewData["Title"] = "Home Page";
                             <div class="list-group">
                                 @foreach (var item in Model.PopularSection)
                                 {
-                                <a href="/article/detail/@item.Id/@item.SeoUrl"
-                                    class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="w-100 justify-content-between">
-                                        <img src="@item.PhotoUrl" alt="@item.SeoUrl" class="img-fluid float-left">
-                                        <h5 class="mb-1">@item.Title</h5>
-                                        <small>@item.UpdatedDate.ToString("dd MM yyyy")</small>
-                                    </div>
-                                </a>
+                                    <a href="/article/detail/@item.Id/@item.SeoUrl"
+                                       class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="w-100 justify-content-between">
+                                            <img src="@item.PhotoUrl" alt="@item.SeoUrl" class="img-fluid float-left">
+                                            <h5 class="mb-1">@item.Title</h5>
+                                            <small>@item.UpdatedDate.ToString("dd MM yyyy")</small>
+                                        </div>
+                                    </a>
                                 }
                             </div>
                         </div><!-- end blog-list -->
@@ -307,7 +352,7 @@ ViewData["Title"] = "Home Page";
                         <div class="blog-list-widget">
                             <div class="list-group">
                                 <a href="tech-single.html"
-                                    class="list-group-item list-group-item-action flex-column align-items-start">
+                                   class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="w-100 justify-content-between">
                                         <img src="upload/tech_blog_02.jpg" alt="" class="img-fluid float-left">
                                         <h5 class="mb-1">Banana-chip chocolate cake recipe..</h5>
@@ -322,7 +367,7 @@ ViewData["Title"] = "Home Page";
                                 </a>
 
                                 <a href="tech-single.html"
-                                    class="list-group-item list-group-item-action flex-column align-items-start">
+                                   class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="w-100 justify-content-between">
                                         <img src="upload/tech_blog_03.jpg" alt="" class="img-fluid float-left">
                                         <h5 class="mb-1">10 practical ways to choose organic..</h5>
@@ -337,7 +382,7 @@ ViewData["Title"] = "Home Page";
                                 </a>
 
                                 <a href="tech-single.html"
-                                    class="list-group-item list-group-item-action flex-column align-items-start">
+                                   class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="w-100 last-item justify-content-between">
                                         <img src="upload/tech_blog_07.jpg" alt="" class="img-fluid float-left">
                                         <h5 class="mb-1">We are making homemade ravioli..</h5>
