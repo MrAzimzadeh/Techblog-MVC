@@ -15,6 +15,7 @@ namespace WebApp.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Advertisement> Advertisements { get; set; }
         public DbSet<UserAds> UserAds { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
 
         /* ? Bumu Yazamagimizin sebebi Sql de .Netin bize verdiyi hazir sql Tabllei nin adini deyisib bu sekilde qoyuruq */
