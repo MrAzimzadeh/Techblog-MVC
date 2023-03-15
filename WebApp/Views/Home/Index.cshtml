@@ -140,15 +140,15 @@
                             <hr class="invis">
                             if (adIndex % 3 == 0 || adIndex == Model.Articles.Count() - 1)
                             {
-                                // Get the next ad from the list
+                                
                                 var ad = Model.Advertisements[adIndex % Model.Advertisements.Count];
 
-                                // Render the ad
+                                
                                 <div class="row">
                                     <div class="col-lg-10 offset-lg-1">
                                         <div class="banner-spot clearfix">
                                             <div class="banner-img">
-                                                <a href="@ad.DirectionAddress">
+                                                <a href="@Url.Action("AdClick", "Home", new { adId = ad.Id })">
                                                     <img src="@ad.PhotoUrl" alt="" class="img-fluid">
                                                 </a>
                                             </div><!-- end banner-img -->
@@ -157,7 +157,6 @@
                                 </div>
                                 <hr class="invis">
 
-                                // Increment the ad index
                                 adIndex++;
                             }
                             else

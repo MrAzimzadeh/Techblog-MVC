@@ -57,7 +57,23 @@ public class HomeController : Controller
             Advertisements = ads
         };
         return View(homeVM);
-        
+
+    }
+    public ActionResult AdClick(int adId)
+    {
+        // Veritabanından reklamı bulun
+        var ad = _context.Advertisements.FirstOrDefault(a => a.Id == adId);
+        if (ad == null)
+        {
+            return NotFound();
+        }
+
+        // Reklamın tıklama sayısını artırın
+        ad.Click++;
+        _context.SaveChanges();
+
+        // Reklamın yönlendirme adresine yönlendirin
+        return Redirect(ad.DirectionAddress);
     }
 
     public IActionResult Privacy()
