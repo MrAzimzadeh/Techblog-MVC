@@ -37,10 +37,20 @@ public class HomeController : Controller
         var popularPost = _context.Articles.Include(x => x.Category)
         .Include(x => x.User)
         .Where(x => x.IsDelete == false && x.IsActive == true && x.PopularPost == true).OrderByDescending(X => X.UpdatedDate).ToList();
+
+            var popularSection = _context.Articles
+                    .Include(x => x.Category)
+                    .Include(x => x.User)
+                    .Where(x => x.IsDelete == false && x.IsActive == true)
+                    .OrderByDescending(x => x.ViewCount)
+                    .Take(5) // sadece en yüksek 10 görüntülenmeye sahip olanları al
+                    .ToList();
         HomeVM homeVM = new()
         {
             Articles = articles,
-            PopularPost = popularPost
+            PopularPost = popularPost,
+            PopularSection = popularSection
+
         };
         return View(homeVM);
     }

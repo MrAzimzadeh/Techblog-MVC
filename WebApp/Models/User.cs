@@ -13,5 +13,6 @@ namespace WebApp.Models
         // public Comment Comment { get; set; }
 
         //public List<UserAds> UserAds { get; set; }
+         public List<UserAds>? UserAds { get; set; }
     }
 }
