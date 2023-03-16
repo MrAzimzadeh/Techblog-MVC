@@ -10,9 +10,7 @@ namespace WebApp.Models
         public string PhotoUrl { get; set; }
         public string AboutAuthor { get; set; }
         public List<Article> Articles { get; set; }
-        // public Comment Comment { get; set; }
 
-        //public List<UserAds> UserAds { get; set; }
          public List<UserAds>? UserAds { get; set; }
     }
 }

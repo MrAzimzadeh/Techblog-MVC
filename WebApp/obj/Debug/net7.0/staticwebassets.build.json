@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8x0wpLe/zRGiBAsRw3uzKOzXFdIuwjsiND1rI2VZrl0=",
+  "Hash": "88iLVzTioD2w/sHQfvD4ZpUaKvDr9/j2OwUc0A1d/rA=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -34136,6 +34136,23 @@
       "OriginalItemSpec": "wwwroot\\Uploads\\7c5a621a-549c-4101-9e8d-1cb6871a85d6christmas-6902574.jpg"
     },
     {
+      "Identity": "C:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\wwwroot\\Uploads\\83b4650c-a56b-4e24-89e7-5d7879186170Screenshot_20230118_015707.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "Uploads/83b4650c-a56b-4e24-89e7-5d7879186170Screenshot_20230118_015707.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\83b4650c-a56b-4e24-89e7-5d7879186170Screenshot_20230118_015707.png"
+    },
+    {
       "Identity": "C:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\wwwroot\\Uploads\\8607ab40-00ec-47ed-b6ec-f00b2425ba14tech_03.jpg",
       "SourceId": "WebApp",
       "SourceType": "Discovered",
@@ -34168,6 +34185,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\89246a65-18e6-41a6-ac25-ee58f904fccctech_menu_20.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\wwwroot\\Uploads\\982ecade-8c35-4821-9698-3ffc5ce23e96Screenshot_20230127_020934.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "Uploads/982ecade-8c35-4821-9698-3ffc5ce23e96Screenshot_20230127_020934.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\982ecade-8c35-4821-9698-3ffc5ce23e96Screenshot_20230127_020934.png"
     },
     {
       "Identity": "C:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\wwwroot\\Uploads\\a4bc508e-c000-460c-9add-75e874d31995Screenshot_20230203_070128.png",

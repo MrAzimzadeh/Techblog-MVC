@@ -84,13 +84,13 @@ namespace WebApp.Controllers
                 Surname = registerDTO.Surname,
                 Email = registerDTO.Email,
                 AboutAuthor = "",
-                PhotoUrl = "/uploads/"
-
+                PhotoUrl = "/uploads/",
             };
             var result = await _userManager.CreateAsync(newUser, registerDTO.Password);
             //todo =========== burada biz result eyer ugurludursa bizi Login etmis sekilde Home`a qaytaracaq @MrAzimzadeh
             if (result.Succeeded)
             {
+                var test = await _userManager.AddToRoleAsync(newUser, "Users");
                 await _signInManger.SignInAsync(newUser, isPersistent: false);
                 return RedirectToAction("Index", "Home");
             }

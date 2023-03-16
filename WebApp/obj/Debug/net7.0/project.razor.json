@@ -18696,6 +18696,11 @@
   "RootNamespace": "WebApp",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Areas\\Admin\\Views\\Dashboard\\Paylasimlarim.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\Dashboard\\Paylasimlarim.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Areas\\Admin\\Views\\Tag\\Detail.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\Tag\\Detail.cshtml",
       "FileKind": "mvc"
@@ -18863,6 +18868,11 @@
     {
       "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Areas\\Admin\\Views\\User\\ListArticles.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\User\\ListArticles.cshtml",
       "FileKind": "mvc"
     },
     {

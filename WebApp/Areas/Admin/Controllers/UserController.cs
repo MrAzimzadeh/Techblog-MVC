@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebApp.Areas.Admin.ViewModels;
+using WebApp.Data;
 using WebApp.Models;
 
 namespace WebApp.Areas.Admin.Controllers
@@ -18,11 +20,13 @@ namespace WebApp.Areas.Admin.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly AppDbContext _context;
 
-        public UserController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        public UserController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, AppDbContext context)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -52,7 +56,7 @@ namespace WebApp.Areas.Admin.Controllers
                 return NotFound();
             }
             User user = await _userManager.FindByIdAsync(id);
-            if (user == null)
+            if (user == null)   
             {
                 return NotFound();
             }
@@ -63,7 +67,17 @@ namespace WebApp.Areas.Admin.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-    
+        public async Task<IActionResult> ListArticles(string id)
+        {
+            var user = await _context.Users.Include(u => u.Articles)
+                                            .FirstOrDefaultAsync(u => u.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user.Articles);
+        }
 
 
     }
