@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebApp.Areas.Admin.ViewModels;
 using WebApp.Data;
+using WebApp.Models;
 
 namespace WebApp.Areas.Admin.Controllers
 {
@@ -35,20 +36,31 @@ namespace WebApp.Areas.Admin.Controllers
             // todo   Article
             var articles = _context.Articles.ToList();
             var articl = _context.Articles;
-            var  count =  articl.Count();
+            var count = articl.Count();
             ViewBag.ArticleCount = count;
             // Todo Categories
             var CategoryCount = _context.Categories.Count();
             ViewBag.CategoryCount = CategoryCount;
             // USER 
-            var users  = _context.Users.Count();
+            var users = _context.Users.Count();
             ViewBag.UsersCount = users;
             var contactCount = _context.Contacts.Count();
             ViewBag.contactCount = contactCount;
-            DashboardVM dashboardVM = new DashboardVM{
-                Articles = articles
+            // 
+            var permissions = _context.Permissions.Include(x => x.User);
+            ViewBag.Message = permissions;
+            DashboardVM dashboardVM = new DashboardVM
+            {
+                Articles = articles,
+
             };
             return View(dashboardVM);
+        }
+        [HttpPost]
+        public IActionResult Index(Permission permissions)
+        {
+            _context.Permissions.Add(permissions);
+            return RedirectToAction(nameof(Index));
         }
         public IActionResult Paylasimlarim(string id)
         {
@@ -58,9 +70,45 @@ namespace WebApp.Areas.Admin.Controllers
             ViewData["Id"] = user.Id;
 
             var articles = _context.Articles.Include(x => x.User).Include(x => x.Category).Where(x => x.User.Id == user.Id).ToList();
+
+
             return View(articles);
         }
 
+        public IActionResult PermissionForm()
+        {
+            var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+            ViewData["user"] = user;
+            ViewData["UserId"] = user.Id;
+
+            var permissions = _context.Permissions.ToList();
+            return View(permissions);
+        }
+        [HttpPost]
+        public IActionResult PermissionForm(string message)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+            ViewData["use"] = user;
+            ViewData["UId"] = user.Id;
+            Permission permission = new Permission()
+            {
+                UserId = userId,
+                MessageText = message,
+                SenderEmail = user.Email,
+                Status = false,
+                SenderName = User.Identity.Name
+
+            };
+            _context.Permissions.Add(permission);
+            _context.SaveChanges();
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

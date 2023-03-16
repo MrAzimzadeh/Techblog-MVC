@@ -1,0 +1,14 @@
+@model List<Permission>
+@{
+    var userId = "";
+}
+
+<div class="container">
+    <form method="post" class="form-group">
+        <div class="mb-3">
+            <label for="message" class="form-label .is-valid">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-50">Gonder</button>
+    </form>
+</div>

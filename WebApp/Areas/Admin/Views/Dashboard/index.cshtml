@@ -81,6 +81,33 @@
 }
 @if (User.IsInRole("Users"))
 {
-    <a href="/admin/dashboard/Paylasimlarim" class="btn btn-primary w-100">Bura</a>
-
+<div class="container">
+   <div class="card text-center">
+    <div class="card-header">
+        User name  : @User.Identity.Name
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Do you want to join us?</h5>
+        <p class="card-text">then fill out the form and become one of our team</p>
+        <a href="/admin/dashboard/PermissionForm" class="btn btn-primary">Switch</a>
+    </div>
+        <div class="card-footer text-muted">
+            2 days ago
+        </div>
+    </div>
+</div>
+@* <form method="post" asp-controller="Dashboard" asp-action="Index">
+    <div class="form-group">
+        <label for=""></label>
+    </div>
+    <div class="form-group">
+        <label asp-for="Permission.SenderEmail" class="control-label"></label>
+        <input asp-for="Permission.SenderEmail" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Permission.MessageText" class="control-label"></label>
+        <textarea asp-for="Permission.MessageText" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Gönder</button>
+</form> *@
 }

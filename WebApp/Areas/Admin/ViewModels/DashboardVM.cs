@@ -12,5 +12,9 @@ namespace WebApp.Areas.Admin.ViewModels
         public Article Article { get; set; }
         public List<Category> Categories { get; set; }
         public Category Category { get; set; }
+        public Permission Permission { get; set; }
+
+        public User User { get; set; }
+        public List<User> Users  { get; set; }
     }
 }
