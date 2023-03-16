@@ -1,0 +1,180 @@
+@model List<Contact>
+
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h1 class="text-center m-0 font-weight-bold text-primary">
+                Active Message
+            </h1>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#Id</th>
+                            <th>Title</th>
+                            <th>DataTime</th>
+                            <th>Content</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                            <th>
+                                Parametr
+                            </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#Id</th>
+                            <th>Title</th>
+                            <th>DataTime</th>
+                            <th>Content</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                            <th>
+                                Parametr
+                            </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @* *@
+                        @foreach (var article in Model)
+                        {
+                            if (article.IsDelete == false)
+                            {
+                                <tr>
+                                    <th>@article.Id</th>
+                                    <th>@article.Subject</th>
+                                    <th>@article.DateTime</th>
+                                    <th>@article.Mesaage</th>
+                                    <th>@article.Name</th>
+                                    <th>@article.Email</th>
+                                    <th>@article.Phone</th>
+                                    <th>
+                                        @if (article.IsDelete == false)
+                                        {
+                                            <span class="btn btn-success ">Active</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="btn btn-danger">DeActive </span>
+                                        }
+                                        @if (article.Status == false)
+                                        {
+                                            <span class="btn btn-warning ">Cavablanmamis</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="btn btn-dark btn-sm">Cavablandi </span>
+                                        }
+                                    </th>
+                                    <th>
+                                        <a href="/Admin/Contact/Delete/@article.Id" class="btn btn-danger w-100">Delete</a>
+                                        <a href="/Admin/Contact/Edit/@article.Id" class="btn btn-info w-100">Detail</a>
+                                        @* <a href="" class="btn btn-warning w-100">Status</a> *@
+                                    </th>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="container-fluid">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h1 class="text-center m-0 font-weight-bold text-danger">
+                    Deleted Messages
+                </h1>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>#Id</th>
+                                <th>Title</th>
+                                <th>DataTime</th>
+                                <th>Content</th>
+                                <th>User Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                                <th>
+                                    Parametr
+                                </th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>#Id</th>
+                                <th>Title</th>
+                                <th>DataTime</th>
+                                <th>Content</th>
+                                <th>User Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                                <th>
+                                    Parametr
+                                </th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @* *@
+                            @foreach (var article in Model)
+                            {
+                                if (article.IsDelete == true)
+                                {
+                                    <tr>
+                                        <th>@article.Id</th>
+                                        <th>@article.Subject</th>
+                                        <th>@article.DateTime</th>
+                                        <th>@article.Mesaage</th>
+                                        <th>@article.Name</th>
+                                        <th>@article.Email</th>
+                                        <th>@article.Phone</th>
+                                        <th>
+                                            @if (article.IsDelete == false)
+                                            {
+                                                <span class="btn btn-success ">Active</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="btn btn-danger">DeActive </span>
+                                            }
+                                            @if (article.Status == false)
+                                            {
+                                                <span class="btn btn-warning ">Cavablanmamis</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="btn btn-dark btn-sm">Cavablandi </span>
+                                            }
+                                        </th>
+                                        <th>
+                                            <a href="/Admin/Contact/Delete/@article.Id" class="btn btn-danger w-100">Delete</a>
+                                            <a href="/Admin/Contact/Edit/@article.Id" class="btn btn-info w-100">Detail</a>
+                                            @* <a href="" class="btn btn-warning w-100">Status</a> *@
+                                        </th>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Data;
 
 namespace WebApp.Areas.Admin.Components
 {
+    [Authorize(Roles = "Admin , Admin Editor , Editor")]
+
     public class ContactViewComponent : ViewComponent
     {
         private readonly AppDbContext _context;
@@ -18,7 +21,7 @@ namespace WebApp.Areas.Admin.Components
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var conntact = _context.Contacts.OrderByDescending(x=>x.Id).ToList();
+            var conntact = _context.Contacts.OrderByDescending(x => x.Id).ToList();
             return View(conntact);
         }
     }

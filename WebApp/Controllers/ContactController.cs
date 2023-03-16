@@ -44,6 +44,8 @@ namespace WebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

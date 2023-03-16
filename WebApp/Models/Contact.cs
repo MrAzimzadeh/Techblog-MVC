@@ -21,5 +21,7 @@ namespace WebApp.Models
         [Required]
         public string Mesaage { get; set; }
         public DateTime DateTime { get; set; }
+        public bool Status { get; set; }
+        public bool IsDelete { get; set; }
     }
 }

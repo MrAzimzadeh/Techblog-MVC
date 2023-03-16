@@ -10,8 +10,7 @@ using Microsoft.Extensions.Logging;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    [Authorize] 
-
+    [Authorize(Roles = "Admin , Admin Editor , Editor")]
     public class CommentController : Controller
     {
         private readonly ILogger<CommentController> _logger;

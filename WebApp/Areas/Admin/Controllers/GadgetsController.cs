@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -11,6 +12,8 @@ using WebApp.Data;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
+        [Authorize(Roles = "Admin , Admin Editor , Editor")]
+
     public class GadgetsController : Controller
     {
         private readonly ILogger<GadgetsController> _logger;
