@@ -86,10 +86,11 @@ namespace WebApp.Areas.Admin.Controllers
             return View(permissions);
         }
         [HttpPost]
-        public IActionResult PermissionForm(string message)
+        public IActionResult PermissionForm(string message , string title)
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.Bos = "Bos ola bilmez";
                 return View();
             }
             var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -98,6 +99,8 @@ namespace WebApp.Areas.Admin.Controllers
             ViewData["UId"] = user.Id;
             Permission permission = new Permission()
             {
+                DateTime = DateTime.Now,
+                Title = title,
                 UserId = userId,
                 MessageText = message,
                 SenderEmail = user.Email,

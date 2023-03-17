@@ -2,9 +2,20 @@
 @{
     var userId = "";
 }
-
+@if (ViewBag.Bos != null)
+{
+    <div class="col-lg-6 m-auto mb-5">
+        <div class="alert alert-danger shadow" role="alert">
+            @ViewBag.Bos
+        </div>
+    </div>
+}
 <div class="container">
     <form method="post" class="form-group">
+        <div class="mb-3 ">
+            <label for="title" id="title">Title</label>
+            <input type="text" name="title" class="form-control">
+        </div>
         <div class="mb-3">
             <label for="message" class="form-label .is-valid">Message</label>
             <textarea class="form-control" id="message" name="message" rows="3"></textarea>

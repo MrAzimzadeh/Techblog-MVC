@@ -12,6 +12,8 @@ namespace WebApp.Models
         public string SenderEmail { get; set; }
         public string MessageText { get; set; }
         public bool Status { get; set; }
+        public DateTime DateTime { get; set; }
+        public string Title { get; set; }
 
         public string UserId { get; set; }
         public User User { get; set; }
