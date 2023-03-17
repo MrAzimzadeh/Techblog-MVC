@@ -18863,6 +18863,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Areas\\Admin\\Views\\User\\UserInfo.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\User\\UserInfo.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Areas\\Admin\\Views\\Advertisement\\Create.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\Advertisement\\Create.cshtml",
       "FileKind": "mvc"

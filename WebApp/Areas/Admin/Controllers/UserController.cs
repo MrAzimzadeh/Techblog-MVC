@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebApp.Areas.Admin.ViewModels;
 using WebApp.Data;
+using WebApp.Helpers;
 using WebApp.Models;
 
 namespace WebApp.Areas.Admin.Controllers
@@ -21,12 +23,16 @@ namespace WebApp.Areas.Admin.Controllers
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly AppDbContext _context;
+        private readonly IHttpContextAccessor _contextAccessor;
+        private readonly IWebHostEnvironment _env;
 
-        public UserController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, AppDbContext context)
+        public UserController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, AppDbContext context, IHttpContextAccessor contextAccessor, IWebHostEnvironment env)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _context = context;
+            _contextAccessor = contextAccessor;
+            _env = env;
         }
 
         public IActionResult Index()
@@ -56,12 +62,12 @@ namespace WebApp.Areas.Admin.Controllers
                 return NotFound();
             }
             User user = await _userManager.FindByIdAsync(id);
-            if (user == null)   
+            if (user == null)
             {
                 return NotFound();
             }
             var userAddRole = await _userManager.AddToRoleAsync(user, role);
-            if (!userAddRole.Succeeded)     
+            if (!userAddRole.Succeeded)
             {
                 return View();
             }
@@ -78,6 +84,57 @@ namespace WebApp.Areas.Admin.Controllers
 
             return View(user.Articles);
         }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> UserInfo()
+        {
+            var userId = _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            User user = await _userManager.FindByIdAsync(userId);
+
+            return View(user);
+        }
+
+        [HttpPost]
+        [HttpPost]
+        public async Task<IActionResult> UserInfo(string userId, string name, string surname, string email, string phoneNumber, string aboutAuthor, IFormFile Photo)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                // User not found
+                return NotFound();
+            }
+
+            user.Name = name;
+            user.Surname = surname;
+            user.Email = email;
+            user.PhoneNumber = phoneNumber;
+            user.AboutAuthor = aboutAuthor;
+            if (Photo != null)
+                user.PhotoUrl = ImageHelper.UploadSinglePhoto(Photo, _env);
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                // User update succeeded
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // User update failed
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View(user);
+            }
+        }
+
+
 
 
     }
