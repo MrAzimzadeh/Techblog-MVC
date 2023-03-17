@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebApp.Data;
+using WebApp.Helpers;
 using WebApp.Models;
 using WebApp.ViewModels;
 
@@ -93,10 +94,50 @@ namespace WebApp.Controllers
             return RedirectToAction(nameof(Detail), new { id = article.Id, article.SeoUrl });
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public async Task<IActionResult> ListArticles(string id, int pg = 1)
         {
-            return View("Error!");
+            const int pageSize = 9;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+            var userId = _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userArt = _context.Users.FirstOrDefault(x => x.Id == userId);
+            var user = await _context.Users.Include(u => u.Articles)
+                                .FirstOrDefaultAsync(u => u.Id == id);
+            var list = user.Articles.ToList();
+            int articleCount = _context.Articles.Where(x => x.User.Id == user.Id)
+                // .Where(x => x.IsDelete == false && x.IsActive == true && x.Gadgets == true || x.Category.CategoryName == "Gadgets")
+                .Count();
+            var pager = new Pager(articleCount, pg, pageSize);
+            int arcSkip = (pg - 1) * pageSize;
+            var articles = _context.Users.Include(x => x.Articles)
+                .ThenInclude(x => x.Category)
+                // .Include(x => x.User)
+                // .Where(x => x.Articles == false && x.IsActive == true && x.Gadgets == true || x.Category.CategoryName == "Gadgets")
+                .OrderByDescending(x => x.Id)
+                .Skip(arcSkip)
+                .Take(pager.PageSize)
+                .ToList();
+            ViewBag.Pager1 = pager;
+            var article = _context.Articles.Where(x => x.User.Id == user.Id).Include(X => X.Category).Include(X => X.User).OrderByDescending(x=>x.CreatedDate).Skip(arcSkip)
+                        .Take(pager.PageSize).ToList();
+            // var popularPost = _context.Articles
+            //     .Include(x => x.Category)
+            //     .Include(x => x.User)
+            //     .Where(x => x.IsDelete == false && x.IsActive == true && x.PopularPost == true && x.Category.CategoryName == "Gadgets")
+            //     .OrderByDescending(x => x.UpdatedDate)
+            //     .ToList();
+            ViewBag.UserName = user.Name;
+            ArticleVM articleVM = new()
+            {
+                Users = articles,
+                Articles = article
+                // PopularPost = popularPost
+            };
+
+            return View(articleVM);
         }
+
     }
 }

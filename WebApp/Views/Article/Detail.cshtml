@@ -124,9 +124,8 @@
                                         </div><!-- end col -->
 
                                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-                                            <h4><a href="#">@Model.Article.User.Name    </a></h4>
-                                            <p>@Model.Article.User.AboutAuthor</p>
-
+                                            <h4><a href="/article/ListArticles/@Model.Article.User.Id">@Model.Article.User.Name    </a></h4>
+                                            <p>@Html.Raw(Model.Article.User.AboutAuthor)</p>
                                             <div class="topsocial">
                                                 <a href="#" data-toggle="tooltip" data-placement="bottom"
                                                     title="Facebook"><i class="fa fa-facebook"></i></a>

@@ -22,7 +22,7 @@ namespace WebApp.Controllers
             _logger = logger;
             _context = context;
         }
-
+        #region a
         // public IActionResult Gadgets(int pg = 1)
         // {
         //     const int pageSize = 9;
@@ -50,6 +50,7 @@ namespace WebApp.Controllers
         //     };
         //     return View(gadgetsVM);
         // }
+        #endregion
         public IActionResult Gadgets(int pg = 1)
         {
             const int pageSize = 9;
@@ -60,15 +61,16 @@ namespace WebApp.Controllers
 
             int articleCount = _context.Articles
                 .Include(x => x.Category)
-                .Where(x => x.IsDelete == false && x.IsActive == true && x.Gadgets ==true || x.Category.CategoryName == "Gadgets")
+                .Where(x => x.IsDelete == false && x.IsActive == true && x.Gadgets == true || x.Category.CategoryName == "Gadgets")
                 .Count();
 
             var pager = new Pager(articleCount, pg, pageSize);
             int arcSkip = (pg - 1) * pageSize;
+
             var articles = _context.Articles
                 .Include(x => x.Category)
                 .Include(x => x.User)
-                .Where(x => x.IsDelete == false && x.IsActive == true && x.Gadgets ==true || x.Category.CategoryName == "Gadgets")
+                .Where(x => x.IsDelete == false && x.IsActive == true && x.Gadgets == true || x.Category.CategoryName == "Gadgets")
                 .OrderByDescending(x => x.Id)
                 .Skip(arcSkip)
                 .Take(pager.PageSize)

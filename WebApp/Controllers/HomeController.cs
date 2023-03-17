@@ -90,6 +90,6 @@ public class HomeController : Controller
     public override bool Equals(object? obj)
     {
         return obj is HomeController controller &&
-               EqualityComparer<AppDbContext>.Default.Equals(_context, controller._context);
+            EqualityComparer<AppDbContext>.Default.Equals(_context, controller._context);
     }
 }
