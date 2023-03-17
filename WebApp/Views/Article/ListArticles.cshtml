@@ -12,7 +12,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                <h2><i class="fa fa-gears bg-orange"></i> @ViewBag.UserName <small class="hidden-xs-down hidden-sm-down">Nulla
+                <h2><i class="fa fa-gears bg-orange"></i> @ViewBag.UserName <small
+                        class="hidden-xs-down hidden-sm-down">Nulla
                         felis eros, varius sit amet volutpat non. </small></h2>
             </div><!-- end col -->
             <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
@@ -231,35 +232,35 @@
                             <!--  -->
                             @foreach (var item in Model.Articles)
                             {
-                                    <div class="col-md-6">
-                                        <div class="blog-box">
-                                            <div class="post-media">
-                                                <a href="/article/detail/@item.Id/@item." title="">
-                                                    <img src="@item.PhotoUrl" alt="" class="img-fluid">
-                                                    <div class="hovereffect">
-                                                        <span></span>
-                                                    </div><!-- end hover -->
-                                                </a>
-                                            </div><!-- end media -->
-                                            <div class="blog-meta big-meta">
-                                                <span class="color-orange"><a href="/article/detail/@item.Id/@item.SeoUrl"
-                                                        title="">@item.Category.CategoryName</a></span>
-                                                <h4><a href="/article/detail/@item.Id/@item.SeoUrl" title="">@item.Title</a>
-                                                </h4>
-                                                <p>@Html.Raw(item.Content.Substring(0,10))</p>
-                                                <small><a href="/article/detail/@item.Id/@item.SeoUrl"
-                                                        title="">@item.UpdatedDate</a></small>
-                                                <small><a href="/article/detail/@item.Id/@item.SeoUrl"
-                                                        title="">@item.User.Name</a></small>
-                                                <small><a href="/article/detail/@item.Id/@item.SeoUrl" title=""><i
-                                                            class="fa fa-eye"></i>
-                                                        @item.ViewCount</a></small>
-                                            </div><!-- end meta -->
-                                        </div><!-- end blog-box -->
-                                    </div>
+                                <div class="col-md-6">
+                                    <div class="blog-box">
+                                        <div class="post-media">
+                                            <a href="/article/detail/@item.Id/@item." title="">
+                                                <img src="@item.PhotoUrl" alt="" class="img-fluid">
+                                                <div class="hovereffect">
+                                                    <span></span>
+                                                </div><!-- end hover -->
+                                            </a>
+                                        </div><!-- end media -->
+                                        <div class="blog-meta big-meta">
+                                            <span class="color-orange"><a href="/article/detail/@item.Id/@item.SeoUrl"
+                                                    title="">@item.Category.CategoryName</a></span>
+                                            <h4><a href="/article/detail/@item.Id/@item.SeoUrl" title="">@item.Title</a>
+                                            </h4>
+                                            <p>@Html.Raw(item.Content.Substring(0,10))</p>
+                                            <small><a href="/article/detail/@item.Id/@item.SeoUrl"
+                                                    title="">@item.UpdatedDate</a></small>
+                                            <small><a href="/article/detail/@item.Id/@item.SeoUrl"
+                                                    title="">@item.User.Name</a></small>
+                                            <small><a href="/article/detail/@item.Id/@item.SeoUrl" title=""><i
+                                                        class="fa fa-eye"></i>
+                                                    @item.ViewCount</a></small>
+                                        </div><!-- end meta -->
+                                    </div><!-- end blog-box -->
+                                </div>
 
-                                    <!-- end col -->
-                                
+                                <!-- end col -->
+
                             }
                         </div><!-- end row -->
                     </div><!-- end blog-grid-system -->
