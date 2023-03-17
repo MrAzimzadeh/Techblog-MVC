@@ -5,6 +5,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -21,15 +23,20 @@ namespace WebApp.Areas.Admin.Controllers
     {
         private readonly ILogger<DashboardController> _logger;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<User> _userManaget;
+
 
 
         // private readonly HttpContextAccessor _httpContextAccessor;
         private readonly AppDbContext _context;
-        public DashboardController(ILogger<DashboardController> logger, IHttpContextAccessor httpContextAccessor, AppDbContext context)
+        public DashboardController(ILogger<DashboardController> logger, IHttpContextAccessor httpContextAccessor, AppDbContext context, UserManager<User> userManaget, RoleManager<IdentityRole> roleManager)
         {
             _logger = logger;
             _httpContextAccessor = httpContextAccessor;
             _context = context;
+            _userManaget = userManaget;
+            _roleManager = roleManager;
         }
         public IActionResult Index()
         {
@@ -86,7 +93,7 @@ namespace WebApp.Areas.Admin.Controllers
             return View(permissions);
         }
         [HttpPost]
-        public IActionResult PermissionForm(string message , string title)
+        public IActionResult PermissionForm(string message, string title)
         {
             if (!ModelState.IsValid)
             {
@@ -112,10 +119,35 @@ namespace WebApp.Areas.Admin.Controllers
             _context.SaveChanges();
             return View();
         }
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+
+        public async Task<IActionResult> UsersPermissionList()
+        {   
+            var list =  _context.Permissions.Include(x => x.User).OrderByDescending(x => x.DateTime).ToList();
+
+            var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            
+            //var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+            
+            //ViewData["role"] = user;
+
+
+            //var userRoles = ( await  _userManaget.GetRolesAsync(user)).ToList(); //! olan rollari yoxlamaq ucun
+            
+            //var roles = _roleManager.Roles.Select(x => x.Name).ToList
+            //var userManager = new UserManager<User>(new UserStore<User>(new YourDbContext()));
+            var user = await _userManaget.FindByIdAsync(userId);
+
+            // Kullanýcýnýn rollerine eriþin
+            var roles = await _userManaget.GetRolesAsync(user);
+            // Kullanýcýnýn rollerinin sayýsýný alýn
+            var roleCount = roles.Count();
+
+            return View(list);
+        }
+        public IActionResult UsersPermission(int id)
         {
-            return View("Error!");
+            var detail = _context.Permissions.Include(x => x.User).FirstOrDefault(x => x.Id == id);
+            return View(detail);
         }
     }
 }

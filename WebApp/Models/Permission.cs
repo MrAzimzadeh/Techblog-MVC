@@ -14,7 +14,6 @@ namespace WebApp.Models
         public bool Status { get; set; }
         public DateTime DateTime { get; set; }
         public string Title { get; set; }
-
         public string UserId { get; set; }
         public User User { get; set; }
     }

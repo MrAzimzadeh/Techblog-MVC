@@ -11,6 +11,6 @@ namespace WebApp.Models
         public string AboutAuthor { get; set; }
         public List<Article> Articles { get; set; }
 
-         public List<UserAds>? UserAds { get; set; }
+        public List<UserAds>? UserAds { get; set; }
     }
 }

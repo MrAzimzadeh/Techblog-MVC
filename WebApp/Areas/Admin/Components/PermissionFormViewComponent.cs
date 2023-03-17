@@ -24,7 +24,8 @@ namespace WebApp.Areas.Admin.Components
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var conntact = _context.Permissions.OrderByDescending(x => x.DateTime).ToList().Take(10);
-            return View(conntact);
+            ViewBag.Content = conntact;
+            return View();
             // return View(user);
 
         }

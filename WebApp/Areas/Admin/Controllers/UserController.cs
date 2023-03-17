@@ -61,7 +61,7 @@ namespace WebApp.Areas.Admin.Controllers
                 return NotFound();
             }
             var userAddRole = await _userManager.AddToRoleAsync(user, role);
-            if (!userAddRole.Succeeded)
+            if (!userAddRole.Succeeded)     
             {
                 return View();
             }

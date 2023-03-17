@@ -10,7 +10,7 @@
     string CategoryinterestString = categoryInterest.ToString("p3");
 }
 
-@if (!User.IsInRole("Users"))
+@if (User.IsInRole("Admin"))
 {
     <div class="container">
         <div class="row">
