@@ -104,8 +104,9 @@
 
                     <div class="blog-list clearfix">
                         @{
-                            int caunt = 0;
-                            int adIndex = 0;
+                                int caunt = 0;
+                                int adIndex  = 0;
+                                int articlesCount = Model.Articles.Count();
                         }
                         @foreach (var article in Model.Articles)
                         {
@@ -143,10 +144,7 @@
                             <hr class="invis">
                             if (adIndex % 3 == 0 || adIndex == Model.Articles.Count() - 1)
                             {
-
                                 var ad = Model.Advertisements[adIndex % Model.Advertisements.Count];
-
-
                                 <div class="row">
                                     <div class="col-lg-10 offset-lg-1">
                                         <div class="banner-spot clearfix">
@@ -159,7 +157,6 @@
                                     </div><!-- end col -->
                                 </div>
                                 <hr class="invis">
-
                                 adIndex++;
                             }
                             else

@@ -12,8 +12,19 @@
         {
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <img class="card-img-top img-fluid h-50" style="" src="@article.Article.PhotoUrl"
-                        alt="@article.Article.SeoUrl">
+                    @if (IsPhoto(article.Article.PhotoUrl))
+                        {
+                             <img src="@article.Article.PhotoUrl" alt="" width="" srcset="">
+                        }
+                        else if (IsVideo(article.Article.PhotoUrl))
+                        {
+                            <video controls class="img-fluid" style="width: 100%;">
+                                <source src="@article.Article.PhotoUrl" style="width:  100%;"  type="video/mp4">
+                            </video>
+                            <spann class="videohover"></spann>
+                        }
+                    @* <img class="card-img-top img-fluid h-50" style="" src="@article.Article.PhotoUrl" *@
+                        @* alt="@article.Article.SeoUrl"> *@
                     <div class="card-body">
                         <h2 class="card-title">@article.Article.Title</h2>
                         <p class="card-text">@Html.Raw(article.Article.Content.Substring(0 , 10))</p>
@@ -26,3 +37,16 @@
         }
     </div>
 </div>
+@functions {
+    private bool IsPhoto(string url)
+    {
+        var extensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+        return extensions.Contains(System.IO.Path.GetExtension(url).ToLower());
+    }
+    private bool IsVideo(string url)
+    {
+        var extensions = new[] { ".mp4", ".avi", ".wmv", ".mov" };
+        return extensions.Contains(System.IO.Path.GetExtension(url).ToLower());
+    }
+
+}

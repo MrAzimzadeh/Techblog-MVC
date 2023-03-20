@@ -44,7 +44,18 @@
             {
                 <div class="col">
                     <div class="card">
-                        <img src="@item.PhotoUrl" class="card-img-top" alt="@item.Title">
+                        @if (IsPhoto(item.PhotoUrl))
+                        {
+                            <img src="@item.PhotoUrl" alt="" width="" srcset="">
+                        }
+                        else if (IsVideo(item.PhotoUrl))
+                        {
+                            <video controls class="img-fluid" style="width: 100%;">
+                                <source src="@item.PhotoUrl" style="width:  100%;" type="video/mp4">
+                            </video>
+                            <span class="videohover"></span>
+                        }
+                        @* <img src="@item.PhotoUrl" class="card-img-top" alt="@item.Title"> *@
                         <div class="card-body">
                             <h5 class="card-title">
                                 @item.Title</h5>
@@ -77,3 +88,16 @@
         </div>
     }
 </div>
+@functions {
+    private bool IsPhoto(string url)
+    {
+        var extensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+        return extensions.Contains(System.IO.Path.GetExtension(url).ToLower());
+    }
+    private bool IsVideo(string url)
+    {
+        var extensions = new[] { ".mp4", ".avi", ".wmv", ".mov" };
+        return extensions.Contains(System.IO.Path.GetExtension(url).ToLower());
+    }
+
+}
