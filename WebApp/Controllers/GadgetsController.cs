@@ -85,10 +85,19 @@ namespace WebApp.Controllers
                 .OrderByDescending(x => x.UpdatedDate)
                 .ToList();
 
+            var videoExtensions = new[] { ".mp4", ".avi", ".mov", ".wmv" }; // desteklenen video uzantýlarý
+            var videos = _context.Articles
+                .Include(x => x.Category)
+                .Include(x => x.User)
+                .OrderByDescending(x => x.Id)
+                .AsEnumerable() // sorgu sonuçlarýný koleksiyona aktar
+                .Where(x => x.IsDelete == false && x.IsActive == true && videoExtensions.Any(ext => x.PhotoUrl.EndsWith(ext))).ToList();
+
             GadgetsVM gadgetsVM = new()
             {
                 Articles = articles,
-                PopularPost = popularPost
+                PopularPost = popularPost,
+                Videos =  videos
             };
 
             return View(gadgetsVM);

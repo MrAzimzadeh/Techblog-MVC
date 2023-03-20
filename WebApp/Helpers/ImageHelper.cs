@@ -7,28 +7,31 @@ namespace WebApp.Helpers
 {
     public static class ImageHelper
     {
-        public static string UploadSinglePhoto(IFormFile image, IWebHostEnvironment env)
+        public static string UploadSinglePhoto(IFormFile file, IWebHostEnvironment env)
         {
-            var path = "/uploads/" + Guid.NewGuid() + image.FileName;
+            string folderName = "";
+
+            if (file.ContentType.Contains("video"))
+            {
+                folderName = "uploads/videos";
+            }
+            else if (file.ContentType.Contains("image"))
+            {
+                folderName = "uploads";
+            }
+
+
+            var path = "/" + folderName + "/" + Guid.NewGuid() + Path.GetExtension(file.FileName);
+
             using (var fileStream = new FileStream(env.WebRootPath + path, FileMode.Create))
             {
-                image.CopyTo(fileStream);
+                file.CopyTo(fileStream);
             }
+
             return path;
+
         }
 
 
     }
-    // public static class FıleUpload
-    // {
-    //     public async static Task<string> UploadSinglePhotoAsync(this IFormFile file, IWebHostEnvironment env)
-    //     {
-    //         var path = "/uploads/" + Guid.NewGuid() + file.FileName;
-    //         using (var fileStream = new FileStream(env.WebRootPath + path, FileMode.Create))
-    //         {
-    //             file.CopyTo(fileStream);
-    //         }
-    //         return path;
-    //     }
-    // }
 }

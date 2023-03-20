@@ -39,18 +39,14 @@
 
     <!-- Version Tech CSS for this template -->
     <link href="~/css/version/tech.css" rel="stylesheet">
-
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-
     <div id="wrapper">
         <header class="tech-header header">
             <div class="container-fluid">
@@ -109,13 +105,14 @@
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     @User.Identity.Name
-                                } 
+                                }
                             </li>
                         </ul>
                     </div>
                 </nav>
             </div><!-- end container-fluid -->
         </header><!-- end market-header -->
+
         @RenderBody()
 
         <footer class="footer">

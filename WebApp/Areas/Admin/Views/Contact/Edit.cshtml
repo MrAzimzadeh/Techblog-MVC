@@ -33,8 +33,8 @@
                                 }
                             </div>
                             <div class="d-flex">
-                                <button class="btn btn-link p-0 me-3 d-none d-lg-block btn-icon-text"><i
-                                        class="bi bi-download"></i>
+                                <button class="btn btn-link p-0 me-3 d-none d-lg-block btn-icon-text">
+                                    <i class="bi bi-download"></i>
                                     @if (Model.Status == false)
                                     {
                                         <span class="text btn btn-danger">
@@ -57,7 +57,7 @@
                                         <div class="d-flex mb-2">
                                             <div class="flex-shrink-0">
                                                 <img src="~/admin/img/undraw_profile_2.svg" alt="" width="35"
-                                                    class="img-fluid">
+                                                     class="img-fluid">
                                             </div>
                                             <div class="flex-lg-grow-1 ms-3">
                                                 <h6 class="small mb-0">
@@ -90,7 +90,8 @@
                                 <tr>
                                     <td colspan="2">Phone</td>
                                     <td class="text-danger text-end">
-                                        <a href="tel:+@Model.Phone">@Model.Phone
+                                        <a href="tel:+@Model.Phone">
+                                            @Model.Phone
                                         </a>
                                     </td>
                                 </tr>
@@ -124,15 +125,16 @@
                             <input type="hidden" asp-for="Subject">
                             <h3 class="h6">Parametrs</h3>
                             <strong>MessageId</strong>
-                            <span><a  class="text-decoration-underline" >@Model.Id</a> <i
-                                    class="bi bi-box-arrow-up-right"></i> </span>
+                            <span>
+                                <a class="text-decoration-underline">@Model.Id</a> <i class="bi bi-box-arrow-up-right"></i>
+                            </span>
                             <hr>
                             @* <h3 class="h6">Address</h3> *@
                             @* <address>
-                                <strong>John Doe</strong><br>
-                                1355 Market St, Suite 900<br>
-                                San Francisco, CA 94103<br>
-                                <abbr title="Phone">P:</abbr> (123) 456-7890
+                            <strong>John Doe</strong><br>
+                            1355 Market St, Suite 900<br>
+                            San Francisco, CA 94103<br>
+                            <abbr title="Phone">P:</abbr> (123) 456-7890
                             </address> *@
                             @* <div class="form-group">
                             <label asp-for="is" class="form-label"></label>
@@ -145,10 +147,10 @@
                             <label asp-for="Status" class="form-label">Cavablandi</label>
                             <br>
                             <button type="submit " class="w-100 btn btn-primary btn-circle">Subbmit</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

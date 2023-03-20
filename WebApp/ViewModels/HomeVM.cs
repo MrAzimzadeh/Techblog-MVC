@@ -14,5 +14,6 @@ namespace WebApp.ViewModels
         public Article BannerArt { get; set; }
         public List<Article> SBannerArt { get; set; }
         public List<Advertisement> Advertisements { get; set; }
+        public IEnumerable<Article> Videos { get; set; }
     }
 }

@@ -8,5 +8,6 @@ namespace WebApp.ViewModels
         public List<Article> Suggestions { get; set; }
         public Article Befero { get; set; }
         public Article After { get; set; }
+        public IEnumerable<Article> Videos { get; set; }
     }
 }

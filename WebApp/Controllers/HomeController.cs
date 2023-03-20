@@ -5,7 +5,7 @@ using WebApp.Data;
 using WebApp.Helpers;
 using WebApp.Models;
 using WebApp.ViewModels;
-
+using System.IO;
 namespace WebApp.Controllers;
 
 public class HomeController : Controller
@@ -40,21 +40,30 @@ public class HomeController : Controller
         .Include(x => x.User)
         .Where(x => x.IsDelete == false && x.IsActive == true && x.PopularPost == true).OrderByDescending(X => X.UpdatedDate).ToList();
 
+        var photoExtensions = new[] { ".png", ".jpg", ".gif" }; // desteklenen video uzantıları
         var popularSection = _context.Articles
                 .Include(x => x.Category)
                 .Include(x => x.User)
-                .Where(x => x.IsDelete == false && x.IsActive == true)
                 .OrderByDescending(x => x.ViewCount)
-                .Take(5) // sadece en yüksek 10 görüntülenmeye sahip olanları al
+                .AsEnumerable().Where(x => x.IsDelete == false && x.IsActive == true && photoExtensions.Any(ext => x.PhotoUrl.EndsWith(ext)))
+                .Take(5)
                 .ToList();
 
         var ads = _context.Advertisements.Where(X => X.IsDeleted == false).ToList();
+        var videoExtensions = new[] { ".mp4", ".avi", ".mov", ".wmv" }; // desteklenen video uzantıları
+        var videos = _context.Articles
+            .Include(x => x.Category)
+            .Include(x => x.User)
+            .OrderByDescending(x => x.ViewCount)
+            .AsEnumerable() // sorgu sonuçlarını koleksiyona aktar
+            .Where(x => x.IsDelete == false && x.IsActive == true && videoExtensions.Any(ext => x.PhotoUrl.EndsWith(ext))).ToList();
         HomeVM homeVM = new()
         {
             Articles = articles,
             PopularPost = popularPost,
             PopularSection = popularSection,
-            Advertisements = ads
+            Advertisements = ads,
+            Videos = videos
         };
         return View(homeVM);
 

@@ -66,12 +66,21 @@ namespace WebApp.Controllers
             var before = _context.Articles.FirstOrDefault(x => x.Id < id);
             var after = _context.Articles.FirstOrDefault(x => x.Id > id);
 
+            var videoExtensions = new[] { ".mp4", ".avi", ".mov", ".wmv" }; // desteklenen video uzantýlarý
+            var videos = _context.Articles
+                .Include(x => x.Category)
+                .Include(x => x.User)
+                .OrderByDescending(x => x.Id)
+                .AsEnumerable() // sorgu sonuçlarýný koleksiyona aktar
+                .Where(x => x.IsDelete == false && x.IsActive == true && videoExtensions.Any(ext => x.PhotoUrl.EndsWith(ext))).ToList();
+
             DetailVM detailVM = new()
             {
                 Article = article,
                 Suggestions = suggestArticle,
                 Befero = before,
-                After = after
+                After = after,
+                Videos = videos
             };
             return View(detailVM);
         }

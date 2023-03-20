@@ -12,5 +12,7 @@ namespace WebApp.ViewModels
         public List<Article> PopularPost { get; set; }
         public Article BannerArt { get; set; }
         public List<Article> SBannerArt { get; set; }
+        public List<Article> Videos{ get; set; }
+        
     }
 }
