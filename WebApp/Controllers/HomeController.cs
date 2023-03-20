@@ -57,6 +57,7 @@ public class HomeController : Controller
             .OrderByDescending(x => x.ViewCount)
             .AsEnumerable() // sorgu sonuçlarını koleksiyona aktar
             .Where(x => x.IsDelete == false && x.IsActive == true && videoExtensions.Any(ext => x.PhotoUrl.EndsWith(ext))).ToList();
+        
         HomeVM homeVM = new()
         {
             Articles = articles,

@@ -18980,6 +18980,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Views\\Video\\Index.cshtml",
+      "TargetPath": "Views\\Video\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Areas\\Admin\\Views\\Role\\Index.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\Role\\Index.cshtml",
       "FileKind": "mvc"
