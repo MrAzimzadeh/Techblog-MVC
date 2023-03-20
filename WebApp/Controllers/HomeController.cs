@@ -32,7 +32,7 @@ public class HomeController : Controller
         var articles = _context.Articles
         .Include(x => x.Category)
         .Include(x => x.User)
-        .Where(x => x.IsDelete == false && x.IsActive == true).OrderByDescending(x => x.Id).Skip(arcSkip).Take(pager.PageSize)
+        .Where(x => x.IsDelete == false && x.IsActive == true).OrderByDescending(x => x.UpdatedDate).Skip(arcSkip).Take(pager.PageSize)
         .ToList();
         ViewBag.Pager = pager;
 

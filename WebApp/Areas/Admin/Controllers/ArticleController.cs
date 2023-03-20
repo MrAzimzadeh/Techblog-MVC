@@ -115,5 +115,24 @@ namespace WebApp.Areas.Admin.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult Delete(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            var delete = _context.Articles.FirstOrDefault(x => x.Id == id);
+            return View(delete);
+        }
+        [HttpPost]
+        public IActionResult Delete(Article article)
+        {
+            var delete = _context.Articles.FirstOrDefault(x => x.Id == article.Id);
+            delete.IsDelete = true;
+            delete.IsActive = false;
+            var result = _context.Articles.Update(delete);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

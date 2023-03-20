@@ -18835,6 +18835,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Areas\\Admin\\Views\\Article\\Delete.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\Article\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\mehem\\OneDrive\\Desktop\\ComparAcademy\\NewGroup\\ASP.NET\\TechBlog\\WebApp\\Areas\\Admin\\Views\\Shared\\Components\\Contact\\Default.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\Shared\\Components\\Contact\\Default.cshtml",
       "FileKind": "mvc"
