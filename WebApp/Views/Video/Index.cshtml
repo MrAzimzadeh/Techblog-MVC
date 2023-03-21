@@ -1,11 +1,16 @@
 @model List<Article>
+@{
+
+    ViewData["Title"] = " Videos ";
+    ViewData["desc"] = " Videos ";
+}
+
 <section class="section">
     <div class="container">
         <div class="row">
             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                 <div class="page-wrapper">
                     <div class="blog-custom-build">
-
                         @foreach (var item in Model)
                         {
                             <div class="blog-box">
@@ -37,9 +42,12 @@
                                         @Html.Raw(item.Content.Substring(0,10))<span>...</span>
                                     </p>
                                     <small><a href="/video/index" title="">Videos</a></small>
-                                    <small><a href="/article/detail/@item.Id/@item.SeoUrl" title="">@item.UpdatedDate.ToString("dd MM yyyy")</a></small>
-                                    <small><a href="/article/ListArticles/@item.User.Id" title=""> by @item.User.Name</a></small>
-                                    <small><a href="/article/detail/@item.Id/@item.SeoUrl" title=""><i class="fa fa-eye"></i>@item.ViewCount</a></small>
+                                    <small><a href="/article/detail/@item.Id/@item.SeoUrl"
+                                            title="">@item.UpdatedDate.ToString("dd MM yyyy")</a></small>
+                                    <small><a href="/article/ListArticles/@item.User.Id" title=""> by
+                                            @item.User.Name</a></small>
+                                    <small><a href="/article/detail/@item.Id/@item.SeoUrl" title=""><i
+                                                class="fa fa-eye"></i>@item.ViewCount</a></small>
                                 </div><!-- end meta -->
                             </div>
                             <!-- end blog-box -->
@@ -66,7 +74,7 @@
             </div><!-- end col -->
 
             @await Component.InvokeAsync("Section")
-            
+
         </div>
     </div><!-- end container -->
 </section>

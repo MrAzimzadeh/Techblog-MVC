@@ -18,6 +18,7 @@ namespace WebApp.Areas.Admin.Controllers
 {
 
     [Area(nameof(Admin))]
+    [Authorize]
     // [Authorize(Roles = "Admin,Admin Editor,Editor,Moderator")]
     public class DashboardController : Controller
     {
@@ -120,6 +121,7 @@ namespace WebApp.Areas.Admin.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin , Admin Editor , Editor, Moderator")]
         public async Task<IActionResult> UsersPermissionList()
         {   
             var list =  _context.Permissions.Include(x => x.User).OrderByDescending(x => x.DateTime).ToList();
@@ -137,13 +139,14 @@ namespace WebApp.Areas.Admin.Controllers
             //var userManager = new UserManager<User>(new UserStore<User>(new YourDbContext()));
             var user = await _userManaget.FindByIdAsync(userId);
 
-            // Kullanýcýnýn rollerine eriþin
+            // Kullanï¿½cï¿½nï¿½n rollerine eriï¿½in
             var roles = await _userManaget.GetRolesAsync(user);
-            // Kullanýcýnýn rollerinin sayýsýný alýn
+            // Kullanï¿½cï¿½nï¿½n rollerinin sayï¿½sï¿½nï¿½ alï¿½n
             var roleCount = roles.Count();
 
             return View(list);
         }
+        [Authorize(Roles = "Admin , Admin Editor , Editor, Moderator")]
         public IActionResult UsersPermission(int id)
         {
             var detail = _context.Permissions.Include(x => x.User).FirstOrDefault(x => x.Id == id);

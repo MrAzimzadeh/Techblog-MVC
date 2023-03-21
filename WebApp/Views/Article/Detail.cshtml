@@ -1,4 +1,14 @@
+   
 @model DetailVM
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@* <meta name= "təsvir"  content= "Bu, səhifənin qısa xülasəsidir."  /> *@
+@{
+    var  title = Model.Article.Title;
+    ViewData["Title"] = title;
+    ViewData["desc"] = title;
+}
+
 <section class="section single-wrapper">
     <div class="container">
         <div class="row">
@@ -20,17 +30,22 @@
 
                         <div class="blog-meta big-meta">
                             <small><a href="tech-single.html" title="">@Model.Article.UpdatedDate.ToString("dd MM yyyy")</a></small>
-                            <small><a href="tech-author.html" title="">by @Model.Article.User.UserName</a></small>
+                            <small><a href="/article/ListArticles/@Model.Article.User.Id" title="">by @Model.Article.User.UserName</a></small>
                             <small><a href="#" title=""><i class="fa fa-eye"></i>@Model.Article.ViewCount</a></small>
                         </div><!-- end meta -->
 
                         <div class="post-sharing">
                             <ul class="list-inline">
                                 <li>
-                                    <a href="#" class="fb-button btn btn-primary">
-                                        <i class="fa fa-facebook"></i>
-                                        <span class="down-mobile">Share on Facebook</span>
-                                    </a>
+                                  @{
+    var request = HttpContextAccessor.HttpContext.Request;
+    var url = $"{request.Scheme}://{request.Host}";
+}
+
+<div class="fb-share-button" data-href="@url@Url.Action("Detail", "Article", new { id = Model.Article.Id, seoUrl = Model.Article.SeoUrl })" data-layout="" data-size=""><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=@url@Url.Action("Detail", "Article", new { id = Model.Article.Id, seoUrl = Model.Article.SeoUrl })&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Paylaş</a></div>
+
+                                    @* <div id="fb-root"></div> *@
+@* <script async defer crossorigin="anonymous" src="https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v16.0&appId=1337428387043068&autoLogAppEvents=1" nonce="VYQfJnCw"></script>   *@
                                 </li>
                                 <li>
                                     <a href="#" class="tw-button btn btn-primary">
@@ -189,7 +204,18 @@
                                 <div class="blog-box">
                                     <div class="post-media">
                                         <a href="/article/detail/@item.Id/@item.SeoUrl" title="">
-                                            <img src="@item.PhotoUrl" alt="" class="img-fluid">
+                                            @* <img src="@item.PhotoUrl" alt="" class="img-fluid"> *@
+                                            @if (IsPhoto(item.PhotoUrl))
+                        {
+                            <img src="@item.PhotoUrl" alt="@item.PhotoUrl" class="img-fluid">
+                        }
+                        else if (IsVideo(item.PhotoUrl))
+                        {
+                            <video controls class="img-fluid">
+                                <source src="@item.PhotoUrl" type="video/mp4">
+                            </video>
+                            <span class="videohover"></span>
+                        }
                                             <div class="hovereffect">
                                                 <span class=""></span>
                                             </div><!-- end hover -->

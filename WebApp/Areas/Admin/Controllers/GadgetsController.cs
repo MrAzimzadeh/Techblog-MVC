@@ -12,7 +12,7 @@ using WebApp.Data;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-        [Authorize(Roles = "Admin , Admin Editor , Editor")]
+    [Authorize(Roles = "Admin , Admin Editor , Editor")]
 
     public class GadgetsController : Controller
     {

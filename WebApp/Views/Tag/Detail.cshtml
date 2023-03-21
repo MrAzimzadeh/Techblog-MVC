@@ -1,4 +1,10 @@
 @model IEnumerable<ArticleTag>
+    @{
+
+    ViewData["Title"] = ViewData["TagName"];
+    ViewData["desc"] = ViewData["TagName"]  + "Tags";
+}
+
 <div class="page-title lb single-wrapper">
     <div class="container">
         <div class="row">

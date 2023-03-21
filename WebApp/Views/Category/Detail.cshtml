@@ -1,10 +1,17 @@
 @model IEnumerable<Article>
+@{
+
+    ViewData["Title"] = ViewData["CategoryName"];
+    ViewData["desc"] = ViewData["CategoryName"];
+}
+
 <div class="page-title lb single-wrapper">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <h2>
-                    <i class="fa fa-star bg-orange"></i> @ViewData["CategoryName"] <small class="hidden-xs-down hidden-sm-down">Nulla felis eros, varius sit amet volutpat non. </small>
+                    <i class="fa fa-star bg-orange"></i> @ViewData["CategoryName"] <small
+                        class="hidden-xs-down hidden-sm-down">Nulla felis eros, varius sit amet volutpat non. </small>
                 </h2>
             </div><!-- end col -->
             <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
@@ -53,14 +60,15 @@
                                     <h4><a href="/article/Detail/@art.Id/@art.SeoUrl" title="">@art.Title</a></h4>
                                     <p>@Html.Raw(art.Content.Substring(0, 10))</p>
                                     <small class="firstsmall">
-                                        <a class="bg-orange" href="/Category/Detail/@art.Category.Id"
-                                           title="">
+                                        <a class="bg-orange" href="/Category/Detail/@art.Category.Id" title="">
                                             @art.Category.CategoryName
                                         </a>
                                     </small>
-                                    <small><a href="/article/Detail/@art.Id/@art.SeoUrl" title="">@art.UpdatedDate.ToString("dd MM yyyy")</a></small>
+                                    <small><a href="/article/Detail/@art.Id/@art.SeoUrl"
+                                            title="">@art.UpdatedDate.ToString("dd MM yyyy")</a></small>
                                     <small><a href="#" title="">by Matilda</a></small>
-                                    <small><a href="/article/Detail/@art.Id/@art.SeoUrl" title=""><i class="fa fa-eye"></i> @art.ViewCount</a></small>
+                                    <small><a href="/article/Detail/@art.Id/@art.SeoUrl" title=""><i class="fa fa-eye"></i>
+                                            @art.ViewCount</a></small>
                                 </div><!-- end meta -->
                             </div>
                             <!-- end blog-box -->

@@ -17,7 +17,7 @@ using WebApp.Models;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class UserController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -34,12 +34,15 @@ namespace WebApp.Areas.Admin.Controllers
             _contextAccessor = contextAccessor;
             _env = env;
         }
+    [Authorize(Roles = "Admin")]
 
         public IActionResult Index()
         {
             var users = _userManager.Users.ToList();
             return View(users);
         }
+    [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> AddRole(string id)
         {
             if (id == null) return NotFound();
@@ -55,6 +58,8 @@ namespace WebApp.Areas.Admin.Controllers
             return View(userRoleVM);
         }
         [HttpPost]
+    [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> AddRole(string id, string role)
         {
             if (id == null)
@@ -73,6 +78,8 @@ namespace WebApp.Areas.Admin.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+    [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> ListArticles(string id)
         {
             var user = await _context.Users.Include(u => u.Articles)
@@ -95,7 +102,7 @@ namespace WebApp.Areas.Admin.Controllers
             return View(user);
         }
 
-        [HttpPost]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> UserInfo(string userId, string name, string surname, string email, string phoneNumber, string aboutAuthor, IFormFile Photo)
         {
@@ -120,7 +127,13 @@ namespace WebApp.Areas.Admin.Controllers
             if (result.Succeeded)
             {
                 // User update succeeded
-                return RedirectToAction("Index");
+                if (User.IsInRole("Admin"))
+                {
+                    return RedirectToAction(nameof(Index));
+                }else
+                {
+                    return RedirectToAction("Index" , "Dashboard");
+                }
             }
             else
             {
