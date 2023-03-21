@@ -22,4 +22,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System.Private.CoreLib">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.NETCore.App\7.0.4\System.Private.CoreLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

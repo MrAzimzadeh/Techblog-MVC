@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace WebApp.Areas.Admin.ViewModels
     {
         public User User{ get; set; }
         public IEnumerable<string> Roles { get; set; }
+        public string? SelectedRole { get; set; }
+        public List<SelectListItem>? AllRoles { get; set; }
     }
 }

@@ -17,7 +17,6 @@ using WebApp.Models;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    [Authorize]
     public class UserController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -34,14 +33,14 @@ namespace WebApp.Areas.Admin.Controllers
             _contextAccessor = contextAccessor;
             _env = env;
         }
-    [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
 
         public IActionResult Index()
         {
             var users = _userManager.Users.ToList();
             return View(users);
         }
-    [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> AddRole(string id)
         {
@@ -58,7 +57,7 @@ namespace WebApp.Areas.Admin.Controllers
             return View(userRoleVM);
         }
         [HttpPost]
-    [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> AddRole(string id, string role)
         {
@@ -78,7 +77,81 @@ namespace WebApp.Areas.Admin.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-    [Authorize(Roles = "Admin")]
+        // 
+        [HttpGet]
+        public async Task<IActionResult> EditRole(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
+                return View("NotFound");
+            }
+
+            var userRoleVM = new UserRoleVM
+            {
+                User = user,
+                Roles = _roleManager.Roles.Select(x => x.Name)
+            };
+
+            return View(userRoleVM);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditRole(UserRoleVM model)
+        {
+            var user = await _userManager.FindByIdAsync(model.User.Id);
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"Kullanýcý ID'si {model.User.Id} olan kullanýcý bulunamadý.";
+                return View("NotFound");
+            }
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+            bool hasUsersRole = userRoles.Contains("Users");
+
+            var newRoles = new List<string>();
+            if (!hasUsersRole)
+            {
+                newRoles.Add("Users");
+            }
+            else
+            {
+                newRoles = userRoles.Where(r => r != "Users").ToList();
+            }
+
+            if (model.Roles != null)
+            {
+                newRoles.AddRange(model.Roles);
+            }
+
+            var result = await _userManager.AddToRolesAsync(user, newRoles);
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Rol güncellenirken hata oluþtu.");
+                return View("EditRole", model);
+            }
+
+            if (hasUsersRole && !newRoles.Contains("Users"))
+            {
+                ModelState.AddModelError("", "Kullanýcýnýn en az bir rolü olmalýdýr. Users rolü otomatik olarak atanacaktýr.");
+                newRoles.Add("Users");
+
+                result = await _userManager.AddToRolesAsync(user, newRoles);
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", "Rol güncellenirken hata oluþtu.");
+                    return View("EditRole", model);
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+
+        //
+        [Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> ListArticles(string id)
         {
@@ -130,9 +203,10 @@ namespace WebApp.Areas.Admin.Controllers
                 if (User.IsInRole("Admin"))
                 {
                     return RedirectToAction(nameof(Index));
-                }else
+                }
+                else
                 {
-                    return RedirectToAction("Index" , "Dashboard");
+                    return RedirectToAction("Index", "Dashboard");
                 }
             }
             else

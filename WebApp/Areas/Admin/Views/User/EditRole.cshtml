@@ -1,0 +1,19 @@
+﻿@model WebApp.Areas.Admin.ViewModels.UserRoleVM
+
+<form asp-action="EditRole" method="post">
+    <input type="hidden" asp-for="User.Id" />
+    <label asp-for="User.Email">Email:</label>
+    <input asp-for="User.Email" disabled />
+    <label asp-for="Roles">Roles:</label>
+    @foreach (var role in Model.Roles)
+    {
+        if (role != "Users")
+        {
+            <div>
+                <input type="checkbox" name="selectedRoles" value="@role" @(Model.Roles.Contains(role) ? "checked" : "") />
+                <label>@role</label>
+            </div>
+        }
+    }
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
