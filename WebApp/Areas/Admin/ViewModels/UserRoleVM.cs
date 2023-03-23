@@ -10,5 +10,7 @@ namespace WebApp.Areas.Admin.ViewModels
     {
         public User User{ get; set; }
         public IEnumerable<string> Roles { get; set; }
+        public string Role { get; set; }
+        public IList<string> UserRoles { get; set; }
     }
 }

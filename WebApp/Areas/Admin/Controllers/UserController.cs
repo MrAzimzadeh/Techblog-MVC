@@ -17,7 +17,7 @@ using WebApp.Models;
 namespace WebApp.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class UserController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -34,12 +34,15 @@ namespace WebApp.Areas.Admin.Controllers
             _contextAccessor = contextAccessor;
             _env = env;
         }
+        [Authorize(Roles = "Admin")]
 
         public IActionResult Index()
         {
             var users = _userManager.Users.ToList();
             return View(users);
         }
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> AddRole(string id)
         {
             if (id == null) return NotFound();
@@ -55,6 +58,8 @@ namespace WebApp.Areas.Admin.Controllers
             return View(userRoleVM);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> AddRole(string id, string role)
         {
             if (id == null)
@@ -73,6 +78,8 @@ namespace WebApp.Areas.Admin.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> ListArticles(string id)
         {
             var user = await _context.Users.Include(u => u.Articles)
@@ -85,6 +92,58 @@ namespace WebApp.Areas.Admin.Controllers
             return View(user.Articles);
         }
 
+        // TOdo =======================================================
+
+        [HttpGet]
+        public async Task<IActionResult> EditRole(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
+                return View("NotFound");
+            }
+
+            var userRoleVM = new UserRoleVM
+            {
+                User = user,
+                Roles = _roleManager.Roles.Select(x => x.Name)
+            };
+
+            return View(userRoleVM);
+        }
+        [HttpPost]
+public async Task<IActionResult> EditRole(UserRoleVM model)
+{
+    var user = await _userManager.FindByIdAsync(model.User.Id);
+    if (user == null)
+    {
+        ViewBag.ErrorMessage = $"User with Id = {model.User.Id} cannot be found";
+        return View("NotFound");
+    }
+
+    var roles = await _userManager.GetRolesAsync(user);
+    var result = await _userManager.RemoveFromRolesAsync(user, roles);
+
+    if (!result.Succeeded)
+    {
+        ModelState.AddModelError("", "Cannot remove user existing roles");
+        return View(model);
+    }
+
+    result = await _userManager.AddToRoleAsync(user, model.Roles.FirstOrDefault());
+
+    if (!result.Succeeded)
+    {
+        ModelState.AddModelError("", "Cannot add selected roles to user");
+        return View(model);
+    }
+
+    return RedirectToAction("Index");
+}
+
+        // TOdo =======================================================
+
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> UserInfo()
@@ -95,7 +154,7 @@ namespace WebApp.Areas.Admin.Controllers
             return View(user);
         }
 
-        [HttpPost]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> UserInfo(string userId, string name, string surname, string email, string phoneNumber, string aboutAuthor, IFormFile Photo)
         {
@@ -120,7 +179,14 @@ namespace WebApp.Areas.Admin.Controllers
             if (result.Succeeded)
             {
                 // User update succeeded
-                return RedirectToAction("Index");
+                if (User.IsInRole("Admin"))
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Dashboard");
+                }
             }
             else
             {

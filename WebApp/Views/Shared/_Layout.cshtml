@@ -10,11 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Site Metas -->
-    <title>Tech Blog - Stylish Magazine Blog Template</title>
+    @* <title>Tech Blog - @ViewData["Title"] </title> *@
+    <title>@ViewData["Title"] - TechBlog</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="title" content="@ViewData["Title"]">
+    <meta name="description" content="@ViewData["desc"]" />
 
+    <link rel="image_src"
+        href="https://f4n3x6c5.stackpathcdn.com/UploadFile/MinorCatImages/asp-dot-net-programming_060516203.png" />
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
@@ -44,6 +49,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src= "http://static.ak.fbcdn.net/connect.php/js/FB.Share"  type= "text/javascript"></script>  
 </head>
 
 <body>
@@ -75,7 +81,7 @@
                                 <a class="nav-link" href="/Video/index">Videos</a>
                             </li>
                             @* <li class="nav-item">
-                                <a class="nav-link" href="#">Reviews</a>
+                            <a class="nav-link" href="#">Reviews</a>
                             </li> *@
                             <li class="nav-item">
                                 <a class="nav-link" href="/Contact/index">Contact Us</a>
