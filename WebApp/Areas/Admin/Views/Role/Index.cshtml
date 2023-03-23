@@ -1,0 +1,96 @@
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <a href="/admin/Role/create">Create</a>
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#Id</th>
+                            <th>Roles</th>
+                            <th>
+                                Parametr
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#Id</th>
+                            <th>Roles</th>
+                            <th>
+                                Parametr
+                            </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @* if *@
+                        @foreach (var item in Model)
+                        {
+                            var staticBackdropLabel = "staticBackdropLabel" + @item.Id;
+                            var staticBackdrop = "staticBackdrop" + @item.Id;
+                            <tr>
+
+                                <th>@Html.Raw(item.Id.Substring(1,5))</th>
+                                <th>@item.Name</th>
+                                <th>
+                                    <a href="/admin/Role/EditRole/@item.Id" class="btn btn-info">Update</a>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#@staticBackdrop">
+                                        Delete
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="@staticBackdrop" data-bs-backdrop="static"
+                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="@staticBackdropLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="@staticBackdropLabel">Role Id :
+                                                        @item.Id</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @if (ViewBag.ErrorMessage != null)
+                                                    {
+                                                        <div class="col-lg-6 m-auto mb-5">
+                                                            <div class="alert alert-danger shadow" role="alert">
+                                                                @ViewBag.ErrorMessage
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>Delete the <b class="text-info"> @item.Name?</b> </span>
+                                                    }
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <form asp-controller="Role" asp-action="Delete" method="post">
+                                                        <input type="hidden" name="id" value="@item.Id">
+                                                        <button type="submit" class="btn btn-danger">Submit</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

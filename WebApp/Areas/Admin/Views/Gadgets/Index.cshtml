@@ -1,0 +1,100 @@
+@model List<Article>
+
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <a href="/admin/article/create">Create</a>
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#Id</th>
+                            <th>Photo</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>User</th>
+                            <th>Status </th>
+                            <th>
+                                Parametr
+                            </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#Id</th>
+                            <th>Photo</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>User</th>
+                            <th>Status</th>
+                            <th>
+                                Parametr
+                            </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @* *@
+                        @foreach (var article in Model)
+                        {
+                            if (article.Category.CategoryName == "Gadgets" || article.Gadgets == true)
+                            {
+                                <tr>
+                                    <th class="">@article.Id</th>
+                                    <th class="">
+                                        @if (IsPhoto(article.PhotoUrl))
+                        {
+                             <img src="@article.PhotoUrl" alt="" width="100" srcset="">
+                        }
+                        else if (IsVideo(article.PhotoUrl))
+                        {
+                            <video controls class="img-fluid" style="width: 100%;">
+                                <source src="@article.PhotoUrl" style="width:  100%;"  type="video/mp4">
+                            </video>
+                            <span class="videohover"></span>
+                        }
+                                        @* <img src="@article.PhotoUrl" alt="" width="100" srcset=""> *@
+                                    </th>
+                                    <th class="w-25">
+                                        @article.Title
+                                    </th>
+                                    <th class="w-25">@Html.Raw(article.Content.Substring(0,10))...</th>
+                                    <th class="w-25">@article.User.Name</th>
+                                    <th class="w-25">
+                                        @(article.IsActive ? "Active" : "DeActive");
+                                        <p>
+                                         Popular   @(article.PopularPost ? "Active" : "DeActive");
+                                        </p>
+                                    </th>
+                                    <th class="w-auto">
+                                        <a href="/admin/article/Detail/@article.Id" class="btn btn-danger w-100"> Deteil </a>
+                                        <a href="/admin/article/delete/@article.Id" class="btn btn-secondary w-100"> Delete </a>
+                                        <a href="/admin/article/edit/@article.Id" class="btn btn-info w-100">Edit</a>
+                                    </th>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+@functions {
+    private bool IsPhoto(string url)
+    {
+        var extensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+        return extensions.Contains(System.IO.Path.GetExtension(url).ToLower());
+    }
+    private bool IsVideo(string url)
+    {
+        var extensions = new[] { ".mp4", ".avi", ".wmv", ".mov" };
+        return extensions.Contains(System.IO.Path.GetExtension(url).ToLower());
+    }
+
+}

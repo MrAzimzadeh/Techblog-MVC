@@ -1,0 +1,85 @@
+@model List<Article>
+
+<ul class="dropdown-menu megamenu" aria-labelledby="dropdown01">
+    <li>
+        <div class="container">
+            <div class="mega-menu-content clearfix">
+                <div class="tab">
+                    @{
+                        var a = Model.Count;
+                        var counter = 0;
+                        var counter1 = 0;
+
+                    }
+                    @foreach (var item in ViewData["menuVM"] as List<Category>)
+                    {
+                        if (counter < 5)
+                        {
+                            var catId = "cat" + item.Id;
+                            <button class="tablinks  @(counter == 0 ? "active" : "") "
+                                onclick="openCategory(event, '@item.Id')">
+                                @item.CategoryName
+                            </button>
+                        }
+                        counter++;
+                    }
+                    @* <button class="tablinks" onclick="openCategory(event, 'cat02')">
+                    Technology
+                    </button>
+                    <button class="tablinks" onclick="openCategory(event, 'cat03')">
+                    Social Media
+                    </button>
+                    <button class="tablinks" onclick="openCategory(event, 'cat04')">
+                    Car
+                    News
+                    </button>
+                    <button class="tablinks" onclick="openCategory(event, 'cat05')">
+                    Worldwide
+                    </button> *@
+                </div>
+
+                <div class="tab-details clearfix">
+                    <!-- cat 1 -->
+
+                    @foreach (var catList in ViewData["menuVM"] as List<Category>)
+                    {
+                        <div id="@catList.Id" class="tabcontent @(counter1 == 0 ? "active" : "")">
+                            <div class="row">
+
+                                @if (catList.Articles != null)
+                                {
+                                    @foreach (var item in catList.Articles.Take(3))
+                                    {
+                                        if (item.IsActive == true )
+                                        {
+                                            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="blog-box">
+                                                    <div class="post-media">
+                                                        <a href="/article/Detail/@item.Id/@item.SeoUrl" title="">
+                                                            <img src="@item.PhotoUrl" alt="" class="img-fluid">
+                                                            <div class="hovereffect">
+                                                            </div><!-- end hover -->
+                                                            <span class="menucat">Science</span>
+                                                        </a>
+                                                    </div><!-- end media -->
+                                                    <div class="blog-meta">
+                                                        <h4>
+                                                            <a href="/article/detail/@item.Id/@item.SeoUrl" title="">
+                                                                @Html.Raw(item.Title.Substring(0,5))
+                                                            </a>
+                                                        </h4>
+                                                    </div><!-- end meta -->
+                                                </div><!-- end blog-box -->
+                                            </div>
+                                        }
+                                        counter1++;
+                                    }
+                                }
+                            </div><!-- end row -->
+                        </div>
+                    }
+                </div><!-- end tab-details -->
+            </div><!-- end mega-menu-content -->
+        </div>
+    </li>
+</ul>

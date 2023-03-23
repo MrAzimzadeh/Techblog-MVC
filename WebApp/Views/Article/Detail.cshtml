@@ -1,0 +1,302 @@
+   
+@model DetailVM
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@* <meta name= "təsvir"  content= "Bu, səhifənin qısa xülasəsidir."  /> *@
+@{
+    var  title = Model.Article.Title;
+    ViewData["Title"] = title;
+    ViewData["desc"] = title;
+}
+
+<section class="section single-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-wrapper">
+                    <div class="blog-title-area text-center">
+                        <ol class="breadcrumb hidden-xs-down">
+                            <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/home">Blog</a></li>
+                            <li class="breadcrumb-item active">@Model.Article.SeoUrl</li>
+                        </ol>
+
+                        <span class="color-orange">
+                            <a href="/Category/detail/@Model.Article.Category.Id/"
+                               title="">@Model.Article.Category.CategoryName</a>
+                        </span>
+
+                        <h3>@Model.Article.Title</h3>
+
+                        <div class="blog-meta big-meta">
+                            <small><a href="tech-single.html" title="">@Model.Article.UpdatedDate.ToString("dd MM yyyy")</a></small>
+                            <small><a href="/article/ListArticles/@Model.Article.User.Id" title="">by @Model.Article.User.UserName</a></small>
+                            <small><a href="#" title=""><i class="fa fa-eye"></i>@Model.Article.ViewCount</a></small>
+                        </div><!-- end meta -->
+
+                        <div class="post-sharing">
+                            <ul class="list-inline">
+                                <li>
+                                  @{
+    var request = HttpContextAccessor.HttpContext.Request;
+    var url = $"{request.Scheme}://{request.Host}";
+}
+
+<div class="fb-share-button" data-href="@url@Url.Action("Detail", "Article", new { id = Model.Article.Id, seoUrl = Model.Article.SeoUrl })" data-layout="" data-size=""><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=@url@Url.Action("Detail", "Article", new { id = Model.Article.Id, seoUrl = Model.Article.SeoUrl })&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Paylaş</a></div>
+
+                                    @* <div id="fb-root"></div> *@
+@* <script async defer crossorigin="anonymous" src="https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v16.0&appId=1337428387043068&autoLogAppEvents=1" nonce="VYQfJnCw"></script>   *@
+                                </li>
+                                <li>
+                                    <a href="#" class="tw-button btn btn-primary">
+                                        <i class="fa fa-twitter"></i>
+                                        <span class="down-mobile">Tweet on Twitter</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" clas s="gp-button btn btn-primary">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!-- end post-sharing -->
+                    </div><!-- end title -->
+
+                    <div class="single-post-media">
+
+                        @if (IsPhoto(Model.Article.PhotoUrl))
+                        {
+                            <img src="@Model.Article.PhotoUrl" alt="@Model.Article.PhotoUrl" class="img-fluid">
+                        }
+                        else if (IsVideo(Model.Article.PhotoUrl))
+                        {
+                            <video controls class="img-fluid">
+                                <source src="@Model.Article.PhotoUrl" type="video/mp4">
+                            </video>
+                            <span class="videohover"></span>
+                        }
+                        @* <img src="@Model.Article.PhotoUrl" alt="" class="img-fluid"> *@
+                    </div><!-- end media -->
+
+                    <div class="blog-content">
+                        @Html.Raw(Model.Article.Content)
+                    </div><!-- end content -->
+
+                    <div class="blog-title-area">
+                        <div class="tag-cloud-single">
+                            <span>Tags</span>
+                            @foreach (var tag in Model.Article.ArticleTags)
+                            {
+                                <small><a href="/tag/detail/@tag.Tag.Id" title="">@tag.Tag.TagName</a></small>
+                            }
+                        </div><!-- end meta -->
+
+                        <div class="post-sharing">
+                            <ul class="list-inline">
+                                <li>
+                                    <a href="#" class="fb-button btn btn-primary">
+                                        <i class="fa fa-facebook"></i>
+                                        <span class="down-mobile">Share on Facebook</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="tw-button btn btn-primary">
+                                        <i class="fa fa-twitter"></i>
+                                        <span class="down-mobile">Tweet on Twitter</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="gp-button btn btn-primary">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!-- end post-sharing -->
+                    </div><!-- end title -->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="banner-spot clearfix">
+                                <div class="banner-img">
+                                    <img src="upload/banner_01.jpg" alt="" class="img-fluid">
+                                </div><!-- end banner-img -->
+                            </div><!-- end banner -->
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+
+                    <hr class="invis1">
+
+                    <div class="custombox prevnextpost clearfix">
+                        <div class="row">
+                            @if (Model.Befero != null)
+                            {
+                                <div class="col-lg-6">
+                                    <div class="blog-list-widget">
+                                        <div class="list-group">
+                                            <a href="/article/detail/@Model.Befero.Id/@Model.Befero.SeoUrl" class="list-group-item list-group-item-action flex-column align-items-start">
+                                                <div class="w-100 justify-content-between text-right">
+                                                    <img src="@Model.Befero.PhotoUrl" alt="" class="img-fluid float-right">
+                                                    <h5 class="mb-1">@Model.Befero.Title</h5>
+                                                    <small>Prev Post</small>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                            }
+                            @if (Model.After != null)
+                            {
+                                <div class="col-lg-6">
+                                    <div class="blog-list-widget">
+                                        <div class="list-group">
+                                            <a href="/article/detail/@Model.After.Id/@Model.After.SeoUrl" class="list-group-item list-group-item-action flex-column align-items-start">
+                                                <div class="w-100 justify-content-between">
+                                                    <img src="@Model.After.PhotoUrl" alt="" class="img-fluid float-left">
+                                                    <h5 class="mb-1">@Model.After.Title</h5>
+                                                    <small>Next Post</small>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                            }
+                        </div><!-- end row -->
+                    </div><!-- end author-box -->
+                    <hr class="invis1">
+                    <div class="custombox authorbox clearfix">
+                        <h4 class="small-title">About author</h4>
+                        <div class="row">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                <img src="@Model.Article.User.PhotoUrl" alt="" class="img-fluid w-100 rounded-circle">
+                            </div><!-- end col -->
+
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                <h4><a href="/article/ListArticles/@Model.Article.User.Id">@Model.Article.User.Name    </a></h4>
+                                <p>@Html.Raw(Model.Article.User.AboutAuthor)</p>
+                                <div class="topsocial">
+                                    <a href="#" data-toggle="tooltip" data-placement="bottom"
+                                       title="Facebook"><i class="fa fa-facebook"></i></a>
+                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Youtube">
+                                        <i class="fa fa-youtube"></i>
+                                    </a>
+                                    <a href="#" data-toggle="tooltip" data-placement="bottom"
+                                       title="Pinterest"><i class="fa fa-pinterest"></i></a>
+                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                    <a href="#" data-toggle="tooltip" data-placement="bottom"
+                                       title="Instagram"><i class="fa fa-instagram"></i></a>
+                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Website">
+                                        <i class="fa fa-link"></i>
+                                    </a>
+                                </div><!-- end social -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                    </div><!-- end author-box -->
+                    <hr class="invis1">
+                    <div class="custombox clearfix">
+                        <h4 class="small-title">You may also like</h4>
+                        @foreach (var item in Model.Suggestions)
+                        {
+                            <div class="col-lg-6">
+                                <div class="blog-box">
+                                    <div class="post-media">
+                                        <a href="/article/detail/@item.Id/@item.SeoUrl" title="">
+                                            @* <img src="@item.PhotoUrl" alt="" class="img-fluid"> *@
+                                            @if (IsPhoto(item.PhotoUrl))
+                        {
+                            <img src="@item.PhotoUrl" alt="@item.PhotoUrl" class="img-fluid">
+                        }
+                        else if (IsVideo(item.PhotoUrl))
+                        {
+                            <video controls class="img-fluid">
+                                <source src="@item.PhotoUrl" type="video/mp4">
+                            </video>
+                            <span class="videohover"></span>
+                        }
+                                            <div class="hovereffect">
+                                                <span class=""></span>
+                                            </div><!-- end hover -->
+                                        </a>
+                                    </div><!-- end media -->
+                                    <div class="blog-meta">
+                                        <h4><a href="/article/detail/@item.Id/@item.SeoUrl" title="">@item.Title</a></h4>
+                                        <small><a href="blog-category-01.html" title="">@item.Category.CategoryName</a></small>
+                                        <small><a href="blog-category-01.html" title="">@item.CreatedDate.ToString("dd MM yyyy")</a></small>
+                                    </div><!-- end meta -->
+                                </div><!-- end blog-box -->
+                            </div>
+                            <!-- end col -->
+                        }
+                    </div>
+                    <hr class="invis1">
+
+                    <div class="custombox clearfix">
+                        <h4 class="small-title">@Model.Article.Comments.Count() Comments</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="comments-list">
+                                    @if (Model.Article.Comments.Count() == 0)
+                                    {
+                                        <div class="alert alert-warning">Comment is empty</div>
+                                    }
+                                    @foreach (var comment in Model.Article.Comments)
+                                    {
+                                        var a = comment.CreatedDate;
+                                        var b = DateTime.Now;
+                                        var c = a - b;
+                                        <div class="media">
+                                            <a class="media-left" href="#">
+                                                <img src="@comment.User.PhotoUrl" alt="" class="rounded-circle">
+                                            </a>
+                                            <div class="media-body">
+                                                <h4 class="media-heading user_name">
+                                                    @comment.User.Name @comment.User.Surname <small>
+                                                        @c.ToString("mm")
+                                                    </small>
+                                                </h4>
+                                                <p>@comment.Content</p>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                    </div><!-- end custom-box -->
+                    <hr class="invis1">
+                    <div class="custombox clearfix">
+                        <h4 class="small-title">Leave a Reply</h4>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <form method="post" class="form-wrapper">
+                                <input type="hidden" name="ArticleId" value="@Model.Article.Id" />
+                                <textarea class="form-control" name="Content" placeholder="Your comment"></textarea>
+                                <button type="submit" class="btn btn-primary">Submit Comment</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <div class="alert alert-info">Go to  <a href="/auth/login">login</a></div>
+                        }
+                    </div>
+                </div><!-- end page-wrapper -->
+            </div><!-- end col -->
+            @await Component.InvokeAsync("Section")
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
+@functions {
+    private bool IsPhoto(string url)
+    {
+        var extensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+        return extensions.Contains(System.IO.Path.GetExtension(url).ToLower());
+    }
+    private bool IsVideo(string url)
+    {
+        var extensions = new[] { ".mp4", ".avi", ".wmv", ".mov" };
+        return extensions.Contains(System.IO.Path.GetExtension(url).ToLower());
+    }
+
+}

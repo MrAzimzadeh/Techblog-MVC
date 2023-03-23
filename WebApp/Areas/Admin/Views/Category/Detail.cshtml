@@ -1,0 +1,50 @@
+@model IEnumerable<Article>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <H1 class=" text-center"> @ViewData["CatName"] </H1>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var article in Model)
+        {
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    @if (IsPhoto(article.PhotoUrl))
+                    {
+                        <img src="@article.PhotoUrl" class="card-img-top img-fluid h-50" alt="" width="100" srcset="">
+                    }
+                    else if (IsVideo(article.PhotoUrl))
+                    {
+                        <video controls class="img-fluid card-img-top img-fluid h-50" style="width: 100%;">
+                            <source src="@article.PhotoUrl " class="card-img-top img-fluid h-50" style="width:  100%;"
+                                type="video/mp4">
+                        </video>
+                        <span class="videohover"></span>
+                    }
+                    @* <img class="card-img-top img-fluid h-50" style="" src="@article.PhotoUrl" alt="@article.Title"> *@
+                    <div class="card-body">
+                        <h2 class="card-title">@article.Title</h2>
+                        <p class="card-text">@Html.Raw(article.Content.Substring(0 , 10))</p>
+                        <a href="/article/detail/@article.Id/@article.SeoUrl" class="btn btn-primary"> Read more </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@functions {
+    private bool IsPhoto(string url)
+    {
+        var extensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+        return extensions.Contains(System.IO.Path.GetExtension(url).ToLower());
+    }
+    private bool IsVideo(string url)
+    {
+        var extensions = new[] { ".mp4", ".avi", ".wmv", ".mov" };
+        return extensions.Contains(System.IO.Path.GetExtension(url).ToLower());
+    }
+
+}

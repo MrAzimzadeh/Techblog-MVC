@@ -1,0 +1,191 @@
+﻿@model Article
+
+<form method="post" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 m-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input type="hidden" asp-for="Id" />
+                                <input type="hidden" asp-for="PhotoUrl" />
+                                <input type="hidden" asp-for="UserId" />
+                                <div class="form-group">
+                                    <label asp-for="Title" class="form-label"></label>
+                                    <input class="form-control" asp-for="Title" />
+                                    <span class="text-danger" asp-validation-for="Title"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label asp-for="Content" class="form-label"></label>
+                                    <textarea id="editor1" class="form-control" asp-for="Content"></textarea>
+                                    <span class="text-danger" asp-validation-for="Content"></span>
+                                </div>
+                            </div>
+                            @if (User.IsInRole("Admin"))
+
+
+
+
+
+
+
+                            {
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        @Html.CheckBoxFor(x=>x.IsActive)
+                                        <label asp-for="IsActive" class="form-label"></label>
+                                    </div>
+                                </div>
+                            }
+                            @if (User.IsInRole("Admin"))
+
+
+
+
+
+
+
+                            {
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        @Html.CheckBoxFor(x=>x.IsDelete)
+                                        <label asp-for="IsDelete" class="form-label"></label>
+                                    </div>
+                                </div>
+                            }
+                            @if (User.IsInRole("Admin"))
+
+
+
+
+
+
+
+                            {
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        @Html.CheckBoxFor(x=>x.PopularPost)
+                                        <label asp-for="PopularPost" class="form-label"></label>
+                                    </div>
+                                </div>
+                            }
+                            @if (User.IsInRole("Admin"))
+
+                            {
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        @Html.CheckBoxFor(x=>x.Gadgets)
+                                        <label asp-for="Gadgets" class="form-label"></label>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label asp-for="CategoryId" class="form-label"></label>
+                                    <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Categories">
+                                        <option value="">Select category</option>
+                                    </select>
+                                    @* <span class="text-danger" asp-validation-for="".></span> *@
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="submit" value="Update aticle" class="btn btn-outline-warning" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="rows">
+                    <div class="card mb-5">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="articleTag">Tags</label>
+                                <select id="articleTag" class="form-control" name="Tags" multiple>
+                                    @foreach (var tag in ViewData["Tags"] as List<Tag>)
+
+                                    {
+
+                                        var result = Model.ArticleTags.Select(x => x.TagId).Contains(tag.Id);
+
+                                        if (result)
+
+                                        {
+                                            <option selected value="@tag.Id">@tag.TagName</option>
+                                        }
+
+                                        else
+
+                                        {
+                                            <option value="@tag.Id">@tag.TagName</option>
+                                        }
+
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-6">
+                        <div class="card-body">
+                            <div class="form-group">
+                                @* <img class="img-fluid mb-4" src="@Model.PhotoUrl" /> *@
+                                @if (IsPhoto(Model.PhotoUrl))
+
+                                {
+                                    <img src="@Model.PhotoUrl" alt="@Model.PhotoUrl" class="img-fluid">
+                                }
+
+                                else if (IsVideo(Model.PhotoUrl))
+
+                                {
+                                    <video controls class="img-fluid">
+                                        <source src="@Model.PhotoUrl" type="video/mp4">
+                                    </video>
+                                    <span class="videohover"></span>
+                                }
+                                <input type="file" class="form-control" name="Photo" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
+
+    <script>
+        CKEDITOR.replace('editor1');
+    </script>
+}
+
+@functions {
+    private bool IsPhoto(string url)
+
+    {
+
+        var extensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+
+        return extensions.Contains(System.IO.Path.GetExtension(url).ToLower());
+
+    }
+
+    private bool IsVideo(string url)
+
+    {
+
+        var extensions = new[] { ".mp4", ".avi", ".wmv", ".mov" };
+
+        return extensions.Contains(System.IO.Path.GetExtension(url).ToLower());
+
+    }
+
+}

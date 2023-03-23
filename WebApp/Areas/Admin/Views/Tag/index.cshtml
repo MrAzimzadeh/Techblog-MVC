@@ -1,0 +1,59 @@
+@model List<Tag>
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <a href="/admin/Tag/create">Create</a>
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#Id</th>
+                            <th>Title</th>
+                            <th>Status </th>
+                            <th>
+                                Parametr
+                            </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#Id</th>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>
+                                Parametr
+                            </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @* *@
+                        @foreach (var tag in Model)
+                        {
+                            <tr>
+                                <th>@tag.Id</th>
+                                <th>
+                                    @tag.TagName
+                                </th>
+                                <th>
+                                    @* @(article. ? "Active" : "De Aktive"); *@
+                                </th>
+                                <th class="d-flex">
+                                     <a href="/admin/tag/Detail/@tag.Id" class="btn btn-secondary"> Deteil
+                                </a> *
+                                    <a href="/admin/tag/delete/@tag.Id" class="btn btn-danger w-50"> Delete
+                                    </a>
+                                    <a href="/admin/tag/Edit/@tag.Id" class="btn btn-primary w-50">Update</a>
+                                </th>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

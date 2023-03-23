@@ -1,0 +1,156 @@
+@model Contact
+
+<div class="container-fluid">
+
+    <div class="container">
+        <!-- Title -->
+        <div class="d-flex justify-content-between align-items-center py-3">
+            <h2 class="h5 mb-0"><a href="#" class="text-muted"></a> Message Id #@Model.Id</h2>
+        </div>
+
+        <!-- Main content -->
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Details -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="mb-3 d-flex justify-content-between">
+                            <div>
+                                <span class="me-3">@Model.DateTime</span>
+                                <span class="me-3">#@Model.Id</span>
+                                @* <span class="me-3">Visa -1234</span> *@
+                                @if (Model.IsDelete == false)
+                                {
+                                    <span class="badge rounded-pill bg-info">
+                                        Active
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge rounded-pill bg-danger">
+                                        De Active
+                                    </span>
+                                }
+                            </div>
+                            <div class="d-flex">
+                                <button class="btn btn-link p-0 me-3 d-none d-lg-block btn-icon-text">
+                                    <i class="bi bi-download"></i>
+                                    @if (Model.Status == false)
+                                    {
+                                        <span class="text btn btn-danger">
+                                            Unanswered
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text btn btn-success">
+                                            answered
+                                        </span>
+                                    }
+                                </button>
+                            </div>
+                        </div>
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex mb-2">
+                                            <div class="flex-shrink-0">
+                                                <img src="~/admin/img/undraw_profile_2.svg" alt="" width="35"
+                                                     class="img-fluid">
+                                            </div>
+                                            <div class="flex-lg-grow-1 ms-3">
+                                                <h6 class="small mb-0">
+                                                    <a class="text-reset " style="font-size: 1.5rem;">
+                                                        @Model.Subject
+                                                    </a>
+                                                </h6>
+                                                <hr>
+                                                <span class="small">@Model.Mesaage </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    @* <td>1</td> *@
+
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">Name </td>
+                                    <td class="text-end">@Model.Name</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Email </td>
+                                    <td class="text-end">
+                                        <a href="mailto:@Model.Email">
+                                            @Model.Email
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Phone</td>
+                                    <td class="text-danger text-end">
+                                        <a href="tel:+@Model.Phone">
+                                            @Model.Phone
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <!-- Payment -->
+            </div>
+            <div class="col-lg-4">
+                <!-- Customer Notes -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="h6">@Model.Subject</h3>
+                        <p>
+
+                        </p>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <!-- Shipping information -->
+                    <form asp-controller="Contact" asp-action="Edit">
+                        <div class="card-body">
+                            <input type="hidden" asp-for="DateTime">
+                            <input type="hidden" asp-for="Email">
+                            <input type="hidden" asp-for="Id">
+                            <input type="hidden" asp-for="IsDelete">
+                            <input type="hidden" asp-for="Mesaage">
+                            <input type="hidden" asp-for="Name">
+                            <input type="hidden" asp-for="Phone">
+                            <input type="hidden" asp-for="Subject">
+                            <h3 class="h6">Parametrs</h3>
+                            <strong>MessageId</strong>
+                            <span>
+                                <a class="text-decoration-underline">@Model.Id</a> <i class="bi bi-box-arrow-up-right"></i>
+                            </span>
+                            <hr>
+                            @* <h3 class="h6">Address</h3> *@
+                            @* <address>
+                            <strong>John Doe</strong><br>
+                            1355 Market St, Suite 900<br>
+                            San Francisco, CA 94103<br>
+                            <abbr title="Phone">P:</abbr> (123) 456-7890
+                            </address> *@
+                            @* <div class="form-group">
+                            <label asp-for="is" class="form-label"></label>
+                            <textarea id="editor1" class="form-control" asp-for="Content"></textarea>
+                            <span class="text-danger" asp-validation-for="Content"></span>
+                            </div> *@
+                            <input type="hidden" value="@Model.Id">
+
+                            @Html.CheckBoxFor(x=>x.Status)
+                            <label asp-for="Status" class="form-label">Cavablandi</label>
+                            <br>
+                            <button type="submit " class="w-100 btn btn-primary btn-circle">Subbmit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

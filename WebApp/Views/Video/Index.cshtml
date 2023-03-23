@@ -1,0 +1,80 @@
+@model List<Article>
+@{
+
+    ViewData["Title"] = " Videos ";
+    ViewData["desc"] = " Videos ";
+}
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-wrapper">
+                    <div class="blog-custom-build">
+                        @foreach (var item in Model)
+                        {
+                            <div class="blog-box">
+                                <div class="post-media">
+                                    <a href="/article/detail/@item.Id/@item.SeoUrl" title="">
+                                        <video controls class="img-fluid">
+                                            <source src="@item.PhotoUrl" type="video/mp4">
+                                        </video>
+                                        <div class="hovereffect">
+                                            <span class="videohover"></span>
+                                        </div>
+                                        <!-- end hover -->
+                                    </a>
+                                </div>
+                                <!-- end media -->
+                                <div class="blog-meta big-meta text-center">
+                                    <div class="post-sharing">
+                                        <ul class="list-inline">
+                                            <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i>
+                                                    <span class="down-mobile">Share on Facebook</span></a></li>
+                                            <li><a href="#" class="tw-button btn btn-primary"><i class="fa fa-twitter"></i>
+                                                    <span class="down-mobile">Tweet on Twitter</span></a></li>
+                                            <li><a href="#" class="gp-button btn btn-primary"><i
+                                                        class="fa fa-google-plus"></i></a></li>
+                                        </ul>
+                                    </div><!-- end post-sharing -->
+                                    <h4><a href="/article/detail/@item.Id/@item.SeoUrl" title="">@item.Title</a></h4>
+                                    <p>
+                                        @Html.Raw(item.Content.Substring(0,10))<span>...</span>
+                                    </p>
+                                    <small><a href="/video/index" title="">Videos</a></small>
+                                    <small><a href="/article/detail/@item.Id/@item.SeoUrl"
+                                            title="">@item.UpdatedDate.ToString("dd MM yyyy")</a></small>
+                                    <small><a href="/article/ListArticles/@item.User.Id" title=""> by
+                                            @item.User.Name</a></small>
+                                    <small><a href="/article/detail/@item.Id/@item.SeoUrl" title=""><i
+                                                class="fa fa-eye"></i>@item.ViewCount</a></small>
+                                </div><!-- end meta -->
+                            </div>
+                            <!-- end blog-box -->
+                        }
+                        <hr class="invis">
+                        @* *@
+                    </div><!-- end blog-custom-build -->
+                </div><!-- end page-wrapper -->
+                <hr class="invis">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end col -->
+
+            @await Component.InvokeAsync("Section")
+
+        </div>
+    </div><!-- end container -->
+</section>
